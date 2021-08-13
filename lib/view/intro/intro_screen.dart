@@ -3,6 +3,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:yamstack/common/resources/R.dart';
+import 'package:yamstack/view/home/home.dart';
+import 'package:yamstack/view/signin/sign_in.dart';
+import 'package:yamstack/view/signup/sign_up.dart';
+import 'package:yamstack/view/widgets/space/space.dart';
 
 import 'intro_controller.dart';
 
@@ -11,40 +15,51 @@ class IntroScreen extends GetView<IntroController> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: Stack(
-          children: [
-            Image.asset(
-              R.images.introBackground,
-              fit: BoxFit.cover,
-              height: double.infinity,
-              width: double.infinity,
-              alignment: Alignment.center,
+        body: _buildBody(),
+      );
+
+  _buildBody() => Stack(
+        children: [
+          Image.asset(
+            R.images.introBackground,
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,
+            alignment: Alignment.center,
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Space.xLarge(),
+                SvgPicture.asset(R.svgs.appLogo),
+                Space.medium(),
+                SvgPicture.asset(R.svgs.introWelcomeText),
+                Space.xLarge(),
+                InkWell(
+                  onTap: () {
+                    Get.toNamed(SignInScreen.ROUTE);
+                  },
+                  child: SvgPicture.asset(R.svgs.introSignInBtn),
+                ),
+                Space.medium(),
+                InkWell(
+                  onTap: () {
+                    Get.toNamed(SignUpScreen.ROUTE);
+                  },
+                  child: SvgPicture.asset(R.svgs.introSignUpBtn),
+                ),
+                Space.medium(),
+                InkWell(
+                  onTap: () {
+                    Get.offNamed(HomeScreen.ROUTE);
+                  },
+                  child: SvgPicture.asset(R.svgs.introAnonymous),
+                ),
+              ],
             ),
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(padding: EdgeInsets.all(48.0)),
-                  SvgPicture.asset(R.svgs.appLogo),
-                  Padding(padding: EdgeInsets.all(16.0)),
-                  SvgPicture.asset(R.svgs.introWelcomeText),
-                  Padding(padding: EdgeInsets.all(48.0)),
-                  InkWell(
-                    child: SvgPicture.asset(R.svgs.introSignInBtn),
-                  ),
-                  Padding(padding: EdgeInsets.all(16.0)),
-                  InkWell(
-                    child: SvgPicture.asset(R.svgs.introSignUpBtn),
-                  ),
-                  Padding(padding: EdgeInsets.all(16.0)),
-                  InkWell(
-                    child: SvgPicture.asset(R.svgs.introAnonymous),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       );
 }
