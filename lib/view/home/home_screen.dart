@@ -3,6 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:yamstack/common/resources/R.dart';
+import 'package:yamstack/view/store/list/store_list_screen.dart';
+import 'package:yamstack/view/user/mypage/my_page_screen.dart';
+import 'package:yamstack/view/yam/list/yam_list_screen.dart';
 
 import 'home_controller.dart';
 
@@ -11,14 +14,17 @@ class HomeScreen extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final pageList = [
-      Center(child: Text('얌얌리스트')),
-      Center(child: Text('여기얌')),
-      Center(child: Text('나얌')),
-    ];
-
     return Obx(() => Scaffold(
-          body: pageList[controller.currentPage.value],
+          body: SafeArea(
+            child: IndexedStack(
+              index: controller.currentPage.toInt(),
+              children: [
+                YamListScreen(),
+                StoreListScreen(),
+                MyPageScreen(),
+              ],
+            ),
+          ),
           bottomNavigationBar: _buildBottomTab(),
         ));
   }
