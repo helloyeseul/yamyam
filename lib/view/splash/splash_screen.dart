@@ -12,7 +12,7 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(Duration(seconds: 2), () {
-      Get.toNamed(INTRO_SCREEN);
+      Get.offNamed(INTRO_SCREEN);
     });
 
     return Scaffold(
