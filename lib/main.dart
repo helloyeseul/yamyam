@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yamstack/view/splash/splash.dart';
 
 import 'routes/routes.dart';
 
@@ -12,7 +13,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
         enableLog: true,
-        initialRoute: SPLASH_SCREEN,
+        initialRoute: SplashScreen.ROUTE,
         defaultTransition: Transition.fade,
         getPages: AppPages.routes,
       );

@@ -7,6 +7,8 @@ import 'package:yamstack/common/resources/R.dart';
 import 'intro_controller.dart';
 
 class IntroScreen extends GetView<IntroController> {
+  static const ROUTE = '/intro';
+
   @override
   Widget build(BuildContext context) => Scaffold(
         body: Stack(
