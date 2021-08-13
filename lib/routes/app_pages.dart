@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:yamstack/view/intro/intro.dart';
-import 'package:yamstack/view/intro/intro_binding.dart';
-import 'package:yamstack/view/splash/splash_screen.dart';
+import 'package:yamstack/view/splash/splash.dart';
 
 part 'app_routes.dart';
 
