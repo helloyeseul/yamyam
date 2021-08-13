@@ -6,6 +6,7 @@ import 'package:yamstack/common/resources/R.dart';
 import 'package:yamstack/view/home/home.dart';
 import 'package:yamstack/view/signin/sign_in.dart';
 import 'package:yamstack/view/signup/sign_up.dart';
+import 'package:yamstack/view/widgets/image/cover_image.dart';
 import 'package:yamstack/view/widgets/space/space.dart';
 
 import 'intro_controller.dart';
@@ -20,13 +21,7 @@ class IntroScreen extends GetView<IntroController> {
 
   _buildBody() => Stack(
         children: [
-          Image.asset(
-            R.images.introBackground,
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-            alignment: Alignment.center,
-          ),
+          CoverImage.asset(R.images.introBackground),
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

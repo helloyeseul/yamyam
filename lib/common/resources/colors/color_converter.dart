@@ -1,6 +1,6 @@
-part of 'color_res.dart';
+part of 'color_constants.dart';
 
-Color hexToColor(String hex) {
+Color _hexToColor(String hex) {
   assert(RegExp(r'^#([0-9a-fA-F]{6})|([0-9a-fA-F]{8})$').hasMatch(hex),
       'hex color must be #rrggbb or #rrggbbaa');
 
