@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="lee.yeseul.yamstack">
    <application
-        android:label="yamstack"
+        android:label="얌스택"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

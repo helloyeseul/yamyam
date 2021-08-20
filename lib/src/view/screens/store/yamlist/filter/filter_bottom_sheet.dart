@@ -26,7 +26,7 @@ class FilterBottomSheet extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 '리스트 필터',
-                style: NotoSans.size18(fontWeight: FontWeight.w700),
+                style: NotoSans.size(18, fontWeight: FontWeight.w700),
               ),
             ),
             const Divider(height: 1, color: ColorResource.grey, thickness: 1),

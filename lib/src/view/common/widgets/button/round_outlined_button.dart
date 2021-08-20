@@ -30,7 +30,7 @@ class RoundOutlinedButton extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(borderRadius)),
       splashColor: Colors.transparent,
-      child: Text(text, style: NotoSans.size16(color: textColor)),
+      child: Text(text, style: NotoSans.size(16, color: textColor)),
     );
   }
 }

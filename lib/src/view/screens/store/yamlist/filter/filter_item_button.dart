@@ -40,7 +40,8 @@ class FilterButton extends StatelessWidget {
             children: [
               Text(
                 type.toStringKor(),
-                style: NotoSans.size18(
+                style: NotoSans.size(
+                  18,
                   color: controller.currentFilter == type
                       ? ColorResource.yellow
                       : ColorResource.black,

@@ -13,7 +13,8 @@ class TitleGroup extends StatelessWidget {
         const SizedBox(height: 16),
         Text(
           '나만의 맛집 리스트, 얌스택',
-          style: NotoSans.size16(
+          style: NotoSans.size(
+            16,
             color: Colors.white,
             fontWeight: FontWeight.w400,
             letterSpacing: 5,

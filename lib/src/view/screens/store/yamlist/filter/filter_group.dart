@@ -22,7 +22,7 @@ class FilterGroup extends StatelessWidget {
                   .find<FilterController>()
                   .currentFilter
                   .toStringKor(),
-              style: NotoSans.size20())),
+              style: NotoSans.size(20))),
           const SizedBox(width: 8.0),
           SvgPicture.asset('assets/svg/arrow_down.svg', width: 16),
         ],

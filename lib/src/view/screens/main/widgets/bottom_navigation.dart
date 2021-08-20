@@ -22,8 +22,8 @@ class BottomNavigation extends StatelessWidget {
           currentIndex: controller.currentPageIndex,
           selectedItemColor: ColorResource.black,
           unselectedItemColor: ColorResource.greyDark,
-          selectedLabelStyle: NotoSans.size9(),
-          unselectedLabelStyle: NotoSans.size9(),
+          selectedLabelStyle: NotoSans.size(9, fontWeight: FontWeight.w500),
+          unselectedLabelStyle: NotoSans.size(9, fontWeight: FontWeight.w500),
           items: [
             _navigationItem(
               '얌얌리스트',

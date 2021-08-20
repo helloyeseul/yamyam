@@ -41,7 +41,7 @@ class ButtonGroup extends StatelessWidget {
               },
               child: Text(
                 '둘러보기',
-                style: NotoSans.size12(color: Colors.white, underline: true),
+                style: NotoSans.size(12, color: Colors.white, underline: true),
               ),
             ),
           )

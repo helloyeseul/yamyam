@@ -26,7 +26,7 @@ class RoundButton extends StatelessWidget {
         color: backgroundColor,
         child: TextButton(
           onPressed: onPressed,
-          child: Text(text, style: NotoSans.size16(color: textColor)),
+          child: Text(text, style: NotoSans.size(16, color: textColor)),
         ),
       ),
     );
