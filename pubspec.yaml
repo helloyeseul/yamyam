@@ -17,6 +17,7 @@ dependencies:
   flutter_svg: ^0.22.0
 
   get: ^4.3.6
+  json_annotation: ^4.1.0
 
 dev_dependencies:
   flutter_test:
@@ -27,6 +28,10 @@ dev_dependencies:
 
   #  debugging
   logger: ^1.0.0
+
+  # json serializer
+  build_runner: ^2.1.1
+  json_serializable: ^5.0.0
 
 flutter:
   uses-material-design: true
