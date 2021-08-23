@@ -18,7 +18,7 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         enableLog: true,
         initialRoute: SplashScreen.ROUTE,
-        defaultTransition: Transition.fade,
+        defaultTransition: Transition.downToUp,
         getPages: AppPages.pages,
         initialBinding: AppBinding(),
       );
