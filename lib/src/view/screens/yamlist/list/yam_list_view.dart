@@ -23,7 +23,7 @@ class YamListView extends StatelessWidget {
       separatorBuilder: (context, index) => const Divider(
         height: 20,
         thickness: 2,
-        color: ColorResource.greyLight,
+        color: ColorResource.grey_0xffeeeeee,
       ),
     );
 

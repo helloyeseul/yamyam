@@ -20,8 +20,8 @@ class BottomNavigation extends StatelessWidget {
       child: Obx(
         () => BottomNavigationBar(
           currentIndex: controller.currentPageIndex,
-          selectedItemColor: ColorResource.black,
-          unselectedItemColor: ColorResource.greyDark,
+          selectedItemColor: ColorResource.black_0xff202020,
+          unselectedItemColor: ColorResource.grey_0xff959595,
           selectedLabelStyle: NotoSans.size(9, fontWeight: FontWeight.w500),
           unselectedLabelStyle: NotoSans.size(9, fontWeight: FontWeight.w500),
           items: [

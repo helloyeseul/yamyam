@@ -13,9 +13,9 @@ class YamListItem extends StatelessWidget {
           label: Text(text),
           labelStyle: NotoSans.size(
             14,
-            color: ColorResource.greyXDark,
+            color: ColorResource.grey_0xff696969,
           ),
-          backgroundColor: ColorResource.greyLight,
+          backgroundColor: ColorResource.grey_0xffeeeeee,
         ),
       );
 
@@ -41,11 +41,13 @@ class YamListItem extends StatelessWidget {
                 children: [
                   Text(
                     '한식당  | ',
-                    style: NotoSans.size(14, color: ColorResource.greyDark),
+                    style:
+                        NotoSans.size(14, color: ColorResource.grey_0xff959595),
                   ),
                   Text(
                     '1.5km',
-                    style: NotoSans.size(14, color: ColorResource.greyXDark),
+                    style:
+                        NotoSans.size(14, color: ColorResource.grey_0xff696969),
                   ),
                 ],
               ),

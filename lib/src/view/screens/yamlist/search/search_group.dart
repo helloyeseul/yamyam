@@ -18,7 +18,7 @@ class SearchGroup extends StatelessWidget {
             child: TextField(
               controller: GetInstance().find<SearchController>().textController,
               style: NotoSans.size(16),
-              cursorColor: ColorResource.greyDark,
+              cursorColor: ColorResource.grey_0xff959595,
               decoration: InputDecoration(
                 border: _border,
                 disabledBorder: _border,
@@ -31,11 +31,12 @@ class SearchGroup extends StatelessWidget {
                   ),
                   child: SvgPicture.asset(
                     'assets/svg/search.svg',
-                    color: ColorResource.greyDark,
+                    color: ColorResource.grey_0xff959595,
                   ),
                 ),
                 hintText: '검색어를 입력하세요',
-                hintStyle: NotoSans.size(16, color: ColorResource.grey),
+                hintStyle:
+                    NotoSans.size(16, color: ColorResource.grey_0xffd9d9d9),
               ),
               onChanged: GetInstance().find<SearchController>().onTextChanged,
             ),
@@ -52,6 +53,6 @@ class SearchGroup extends StatelessWidget {
   }
 
   InputBorder get _border => const OutlineInputBorder(
-      borderSide: BorderSide(color: ColorResource.grey, width: 1),
+      borderSide: BorderSide(color: ColorResource.grey_0xffd9d9d9, width: 1),
       borderRadius: BorderRadius.all(Radius.circular(8)));
 }

@@ -29,7 +29,8 @@ class FilterBottomSheet extends StatelessWidget {
                 style: NotoSans.size(18, fontWeight: FontWeight.w700),
               ),
             ),
-            const Divider(height: 1, color: ColorResource.grey, thickness: 1),
+            const Divider(
+                height: 1, color: ColorResource.grey_0xffd9d9d9, thickness: 1),
             const SizedBox(height: 12),
             const FilterButton(type: FilterType.yam),
             const FilterButton(type: FilterType.done),
@@ -41,8 +42,8 @@ class FilterBottomSheet extends StatelessWidget {
                   Get.back();
                 },
                 text: '닫기',
-                textColor: ColorResource.black,
-                borderColor: ColorResource.grey,
+                textColor: ColorResource.black_0xff202020,
+                borderColor: ColorResource.grey_0xffd9d9d9,
               ),
             ),
           ],

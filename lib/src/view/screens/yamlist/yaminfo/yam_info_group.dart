@@ -39,7 +39,7 @@ class YamInfoGroup extends StatelessWidget {
                     child: LinearProgressIndicator(
                       value: 0.6,
                       color: ColorResource.yellow,
-                      backgroundColor: ColorResource.grey,
+                      backgroundColor: ColorResource.grey_0xffd9d9d9,
                       minHeight: 16,
                     ),
                   ),

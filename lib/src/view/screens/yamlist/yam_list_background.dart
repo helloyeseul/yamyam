@@ -13,7 +13,7 @@ class YamListBackground extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Colors.white, ColorResource.grey],
+          colors: [Colors.white, ColorResource.grey_0xffd9d9d9],
         ),
       ),
       child: Container(

@@ -44,7 +44,7 @@ class FilterButton extends StatelessWidget {
                   18,
                   color: controller.currentFilter == type
                       ? ColorResource.yellow
-                      : ColorResource.black,
+                      : ColorResource.black_0xff202020,
                 ),
               ),
               if (controller.currentFilter == type)
