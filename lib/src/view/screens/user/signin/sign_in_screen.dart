@@ -4,11 +4,13 @@ import 'package:get/get.dart';
 import 'package:yamstack/src/view/screens/user/signin/sign_in_controller.dart';
 
 class SignInScreen extends GetView<SignInController> {
-  static const ROUTE = '/sign_in';
+  const SignInScreen({Key? key}) : super(key: key);
+
+  static const route = '/sign_in';
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(),
-        body: Center(child: Text('로그인')),
+        body: const Center(child: Text('로그인')),
       );
 }

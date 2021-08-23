@@ -23,7 +23,8 @@ dev_dependencies:
     sdk: flutter
 
   #  dart's lint settings
-  pedantic: ^1.11.1
+  lint: ^1.6.0
+
   #  debugging
   logger: ^1.0.0
 

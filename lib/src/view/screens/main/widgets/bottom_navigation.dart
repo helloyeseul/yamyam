@@ -55,11 +55,11 @@ class BottomNavigation extends StatelessWidget {
       BottomNavigationBarItem(
         label: text,
         icon: Container(
-          padding: EdgeInsets.only(bottom: 4.0),
+          padding: const EdgeInsets.only(bottom: 4.0),
           child: SvgPicture.asset(unselectedIcon, width: 20, height: 20),
         ),
         activeIcon: Container(
-          padding: EdgeInsets.only(bottom: 4.0),
+          padding: const EdgeInsets.only(bottom: 4.0),
           child: SvgPicture.asset(selectedIcon, width: 20, height: 20),
         ),
       );

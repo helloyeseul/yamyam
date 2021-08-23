@@ -8,7 +8,9 @@ import 'package:yamstack/src/view/screens/user/mypage/my_page_screen.dart';
 import 'package:yamstack/src/view/screens/yamlist/yam_list_screen.dart';
 
 class MainScreen extends GetView<MainController> {
-  static const ROUTE = '/home';
+  const MainScreen({Key? key}) : super(key: key);
+
+  static const route = '/home';
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class MainScreen extends GetView<MainController> {
       body: Obx(
         () => IndexedStack(
           index: controller.currentPageIndex,
-          children: [
+          children: const [
             YamListScreen(),
             StoreListScreen(),
             MyPageScreen(),

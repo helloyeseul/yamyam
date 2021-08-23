@@ -23,11 +23,7 @@ class RoundOutlinedButton extends StatelessWidget {
       height: 48,
       onPressed: onPressed,
       shape: RoundedRectangleBorder(
-          side: BorderSide(
-            color: borderColor,
-            width: 1,
-            style: BorderStyle.solid,
-          ),
+          side: BorderSide(color: borderColor),
           borderRadius: BorderRadius.circular(borderRadius)),
       splashColor: Colors.transparent,
       child: Text(text, style: NotoSans.size(16, color: textColor)),

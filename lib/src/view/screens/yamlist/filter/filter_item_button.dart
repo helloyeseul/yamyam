@@ -5,14 +5,14 @@ import 'package:yamstack/resource/color_resource.dart';
 import 'package:yamstack/src/view/common/widgets/text/fontstyle/noto_sans.dart';
 import 'package:yamstack/src/view/screens/yamlist/filter/filter_controller.dart';
 
-enum FilterType { Yam, Done }
+enum FilterType { yam, done }
 
 extension ListTypeExtensions on FilterType {
   String toStringKor() {
     switch (this) {
-      case FilterType.Yam:
+      case FilterType.yam:
         return '얌얌리스트';
-      case FilterType.Done:
+      case FilterType.done:
         return '완료얌';
     }
   }
@@ -47,9 +47,10 @@ class FilterButton extends StatelessWidget {
                       : ColorResource.black,
                 ),
               ),
-              controller.currentFilter == type
-                  ? SvgPicture.asset('assets/svg/check.svg', width: 20)
-                  : Container(),
+              if (controller.currentFilter == type)
+                SvgPicture.asset('assets/svg/check.svg', width: 20)
+              else
+                Container(),
             ],
           ),
         );

@@ -16,7 +16,6 @@ class TitleGroup extends StatelessWidget {
           style: NotoSans.size(
             16,
             color: Colors.white,
-            fontWeight: FontWeight.w400,
             letterSpacing: 5,
           ),
         ),

@@ -13,7 +13,7 @@ class FilterGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.bottomSheet(FilterBottomSheet());
+        Get.bottomSheet(const FilterBottomSheet());
       },
       child: Row(
         children: [

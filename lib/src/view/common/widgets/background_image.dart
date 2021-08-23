@@ -13,7 +13,6 @@ class BackgroundImage extends StatelessWidget {
       fit: BoxFit.cover,
       height: double.infinity,
       width: double.infinity,
-      alignment: Alignment.center,
     );
   }
 }

@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
-enum RoutePage { YamList, StoreList, MyPage }
+enum RoutePage { yamList, storeList, myPage }
 
 class MainController extends GetxController {
-  final _currentPage = RoutePage.YamList.obs;
+  final _currentPage = RoutePage.yamList.obs;
 
   RoutePage get currentPage => _currentPage.value;
 

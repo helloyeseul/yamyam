@@ -9,12 +9,12 @@ import 'package:yamstack/src/view/screens/intro/welcome/intro_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
-  static const ROUTE = '/';
+  static const route = '/';
 
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(seconds: 2), () {
-      Get.offNamed(IntroScreen.ROUTE);
+    Timer(const Duration(seconds: 2), () {
+      Get.offNamed(IntroScreen.route);
     });
 
     return Scaffold(
