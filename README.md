@@ -4,3 +4,6 @@
 
 ### json_serializable 최신버전 디팬던시 충돌 해결
 - [flutter, dart sdk 업데이트](https://flutter.dev/docs/development/tools/sdk/upgrading)
+
+### generate code 명령어
+`$ flutter pub run build_runner build`
