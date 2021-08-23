@@ -20,7 +20,7 @@ class ButtonGroup extends StatelessWidget {
         children: [
           RoundButton(
             onPressed: () {
-              Get.toNamed(SignInScreen.ROUTE);
+              Get.toNamed(SignInScreen.route);
             },
             text: '로그인',
             textColor: Colors.white,
@@ -29,7 +29,7 @@ class ButtonGroup extends StatelessWidget {
           const SizedBox(height: 16),
           RoundOutlinedButton(
             onPressed: () {
-              Get.toNamed(SignUpScreen.ROUTE);
+              Get.toNamed(SignUpScreen.route);
             },
             text: '회원가입',
           ),
@@ -37,7 +37,7 @@ class ButtonGroup extends StatelessWidget {
           Center(
             child: InkWell(
               onTap: () {
-                Get.offAllNamed(MainScreen.ROUTE);
+                Get.offAllNamed(MainScreen.route);
               },
               child: Text(
                 '둘러보기',

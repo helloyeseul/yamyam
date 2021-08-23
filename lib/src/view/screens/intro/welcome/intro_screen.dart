@@ -6,7 +6,7 @@ import 'package:yamstack/src/view/screens/intro/welcome/widgets/title_group.dart
 
 class IntroScreen extends StatelessWidget {
   const IntroScreen({Key? key}) : super(key: key);
-  static const ROUTE = '/intro';
+  static const route = '/intro';
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -16,10 +16,10 @@ class IntroScreen extends StatelessWidget {
             Container(color: Colors.black.withAlpha(30)),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const SizedBox(height: 16),
-                const TitleGroup(),
-                const ButtonGroup(),
+              children: const [
+                SizedBox(height: 16),
+                TitleGroup(),
+                ButtonGroup(),
               ],
             )
           ],

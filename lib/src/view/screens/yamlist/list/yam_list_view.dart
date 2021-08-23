@@ -14,12 +14,12 @@ class YamListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var yamList = ListView.separated(
-      physics: NeverScrollableScrollPhysics(),
+    final yamList = ListView.separated(
+      physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.all(16),
       shrinkWrap: true,
       itemCount: 10,
-      itemBuilder: (context, index) => YamListItem(),
+      itemBuilder: (context, index) => const YamListItem(),
       separatorBuilder: (context, index) => const Divider(
         height: 20,
         thickness: 2,
@@ -41,9 +41,9 @@ class YamListView extends StatelessWidget {
             flexibleSpace: Container(
               padding: const EdgeInsets.all(16.0),
               child: Column(
-                children: [
+                children: const [
                   Expanded(child: FilterGroup()),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   Expanded(child: SearchGroup()),
                 ],
               ),

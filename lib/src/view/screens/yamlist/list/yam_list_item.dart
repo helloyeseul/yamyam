@@ -5,7 +5,7 @@ import 'package:yamstack/src/view/common/widgets/text/fontstyle/noto_sans.dart';
 class YamListItem extends StatelessWidget {
   const YamListItem({Key? key}) : super(key: key);
 
-  Widget _getChip(String text) => Container(
+  Widget _getChip(String text) => SizedBox(
         height: 32,
         child: Chip(
           visualDensity: VisualDensity.compact,
@@ -30,13 +30,13 @@ class YamListItem extends StatelessWidget {
             'https://mblogthumb-phinf.pstatic.net/MjAyMDAyMDJfMTM2/MDAxNTgwNjU0NjA4NjYx.MKNQa4qm420twqahO6A4aceYsTEJhMCttaEcXOKEbtkg.PQbPC6LKckZObB0tauSN3Wt6IAT9euMdX7wofSD9Fugg.JPEG.cozy95/3.JPG?type=w800',
           ).image,
         ),
-        SizedBox(width: 12),
+        const SizedBox(width: 12),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text('만포면옥본점', style: NotoSans.size(18)),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Row(
                 children: [
                   Text(
@@ -49,7 +49,7 @@ class YamListItem extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               Wrap(
                 spacing: 4,
                 children: List.generate(

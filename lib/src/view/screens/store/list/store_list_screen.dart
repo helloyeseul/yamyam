@@ -4,14 +4,15 @@ import 'package:get/get.dart';
 import 'package:yamstack/src/view/screens/store/list/store_list_controller.dart';
 
 class StoreListScreen extends GetView<StoreListController> {
-  static const ROUTE = '/store_list';
+  const StoreListScreen({Key? key}) : super(key: key);
+
+  static const route = '/store_list';
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: _buildBody(),
-      );
-
-  Widget _buildBody() => Center(
-        child: Text('StoreListScreen'),
+        appBar: AppBar(),
+        body: const Center(
+          child: Text('StoreListScreen'),
+        ),
       );
 }

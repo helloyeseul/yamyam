@@ -11,7 +11,7 @@ class FilterBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.only(
+      borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(20),
         topRight: Radius.circular(20),
       ),
@@ -30,10 +30,10 @@ class FilterBottomSheet extends StatelessWidget {
               ),
             ),
             const Divider(height: 1, color: ColorResource.grey, thickness: 1),
-            SizedBox(height: 12),
-            FilterButton(type: FilterType.Yam),
-            FilterButton(type: FilterType.Done),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
+            const FilterButton(type: FilterType.yam),
+            const FilterButton(type: FilterType.done),
+            const SizedBox(height: 12),
             Container(
               padding: const EdgeInsets.all(16.0),
               child: RoundOutlinedButton(

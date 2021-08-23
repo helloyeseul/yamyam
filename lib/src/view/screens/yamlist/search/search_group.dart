@@ -20,7 +20,6 @@ class SearchGroup extends StatelessWidget {
               style: NotoSans.size(16),
               cursorColor: ColorResource.greyDark,
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.all(0),
                 border: _border,
                 disabledBorder: _border,
                 enabledBorder: _border,
@@ -42,7 +41,7 @@ class SearchGroup extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(width: 12),
+        const SizedBox(width: 12),
         SvgPicture.asset(
           'assets/svg/filter.svg',
           width: 20,
@@ -52,7 +51,7 @@ class SearchGroup extends StatelessWidget {
     );
   }
 
-  final _border = const OutlineInputBorder(
+  InputBorder get _border => const OutlineInputBorder(
       borderSide: BorderSide(color: ColorResource.grey, width: 1),
       borderRadius: BorderRadius.all(Radius.circular(8)));
 }

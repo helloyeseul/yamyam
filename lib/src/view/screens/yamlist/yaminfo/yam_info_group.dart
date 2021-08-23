@@ -20,9 +20,9 @@ class YamInfoGroup extends StatelessWidget {
             '얌얌박사 😎',
             style: NotoSans.size(28, fontWeight: FontWeight.w700),
           ),
-          SizedBox(height: 28),
+          const SizedBox(height: 28),
           ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(12)),
+            borderRadius: const BorderRadius.all(Radius.circular(12)),
             child: Container(
               padding: const EdgeInsets.only(
                   top: 28, left: 16, right: 16, bottom: 16),
@@ -33,8 +33,8 @@ class YamInfoGroup extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: Text('달성률 64%', style: NotoSans.size(16)),
                   ),
-                  SizedBox(height: 12),
-                  ClipRRect(
+                  const SizedBox(height: 12),
+                  const ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(16)),
                     child: LinearProgressIndicator(
                       value: 0.6,

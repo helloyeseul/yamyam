@@ -4,14 +4,15 @@ import 'package:get/get.dart';
 import 'package:yamstack/src/view/screens/user/mypage/my_page_controller.dart';
 
 class MyPageScreen extends GetView<MyPageController> {
-  static const ROUTE = '/my_page';
+  const MyPageScreen({Key? key}) : super(key: key);
+
+  static const route = '/my_page';
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: _buildBody(),
-      );
-
-  Widget _buildBody() => Center(
-        child: Text('MyPageScreen'),
+        appBar: AppBar(),
+        body: const Center(
+          child: Text('MyPageScreen'),
+        ),
       );
 }
