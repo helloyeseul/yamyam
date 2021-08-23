@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yamstack/src/view/common/widgets/text/fontstyle/noto_sans.dart';
+import 'package:yamstack/src/view/common/widgets/text/noto_sans_text.dart';
 
 class RoundButton extends StatelessWidget {
   const RoundButton({
@@ -25,9 +25,8 @@ class RoundButton extends StatelessWidget {
         height: 48,
         color: backgroundColor,
         child: TextButton(
-          onPressed: onPressed,
-          child: Text(text, style: NotoSans.size(16, color: textColor)),
-        ),
+            onPressed: onPressed,
+            child: NotoSansText(text, size: 16, color: textColor)),
       ),
     );
   }
