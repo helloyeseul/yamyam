@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:yamstack/resource/color_resource.dart';
 import 'package:yamstack/src/view/common/widgets/text/fontstyle/noto_sans.dart';
-import 'package:yamstack/src/view/screens/store/yamlist/filter/filter_controller.dart';
+import 'package:yamstack/src/view/screens/yamlist/filter/filter_controller.dart';
 
 enum FilterType { Yam, Done }
 

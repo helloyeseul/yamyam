@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:yamstack/src/view/common/widgets/text/fontstyle/noto_sans.dart';
-import 'package:yamstack/src/view/screens/store/yamlist/filter/filter_bottom_sheet.dart';
-import 'package:yamstack/src/view/screens/store/yamlist/filter/filter_controller.dart';
-import 'package:yamstack/src/view/screens/store/yamlist/filter/filter_item_button.dart';
+import 'package:yamstack/src/view/screens/yamlist/filter/filter_bottom_sheet.dart';
+import 'package:yamstack/src/view/screens/yamlist/filter/filter_controller.dart';
+import 'package:yamstack/src/view/screens/yamlist/filter/filter_item_button.dart';
 
 class FilterGroup extends StatelessWidget {
   const FilterGroup({Key? key}) : super(key: key);

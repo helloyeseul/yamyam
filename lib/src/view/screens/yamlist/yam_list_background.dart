@@ -8,12 +8,17 @@ class YamListBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [Colors.white, ColorResource.grey],
         ),
+      ),
+      child: Container(
+        alignment: Alignment.topRight,
+        child: SvgPicture.asset('assets/svg/yam_list_bg.svg'),
       ),
     );
   }

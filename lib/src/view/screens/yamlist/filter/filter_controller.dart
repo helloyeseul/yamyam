@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:yamstack/src/view/screens/store/yamlist/filter/filter_item_button.dart';
+import 'package:yamstack/src/view/screens/yamlist/filter/filter_item_button.dart';
 
 class FilterController extends GetxController {
   final _currentType = FilterType.Yam.obs;
