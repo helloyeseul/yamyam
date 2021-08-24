@@ -10,5 +10,4 @@ Map<String, dynamic> _$UserSignInRequestToJson(UserSignInRequest instance) =>
     <String, dynamic>{
       'email': instance.email,
       'password': instance.password,
-      'name': instance.name,
     };

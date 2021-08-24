@@ -5,6 +5,5 @@ extension SignInUserModelMapper on SignInUserModel {
   UserSignInRequest toRequest() => UserSignInRequest(
         email: ArgumentError.checkNotNull(email),
         password: ArgumentError.checkNotNull(password),
-        name: ArgumentError.checkNotNull(name),
       );
 }

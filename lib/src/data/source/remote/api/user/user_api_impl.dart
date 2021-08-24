@@ -12,5 +12,5 @@ class UserApiImpl implements UserApi {
 
   @override
   Future<UserSignResponse> signIn(UserSignInRequest request) =>
-      _connect.getSingle<UserSignResponse>('/login/join', request.toJson());
+      _connect.getSingle<UserSignResponse>('/login/sign', request.toJson());
 }

@@ -7,7 +7,6 @@ class UserSignInRequest {
   UserSignInRequest({
     required this.email,
     required this.password,
-    required this.name,
   });
 
   @JsonKey(name: 'email')
@@ -15,9 +14,6 @@ class UserSignInRequest {
 
   @JsonKey(name: 'password')
   final String password;
-
-  @JsonKey(name: 'name')
-  final String name;
 
   Map<String, dynamic> toJson() => _$UserSignInRequestToJson(this);
 }
