@@ -20,8 +20,9 @@ dependencies:
   json_annotation: ^4.1.0
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  # test
+  test: ^1.17.11
+  mockito: ^5.0.15
 
   #  dart's lint settings
   lint: ^1.6.0
