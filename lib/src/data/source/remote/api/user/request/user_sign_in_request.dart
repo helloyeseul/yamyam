@@ -4,7 +4,11 @@ part 'user_sign_in_request.g.dart';
 
 @JsonSerializable(explicitToJson: true, createFactory: false)
 class UserSignInRequest {
-  UserSignInRequest(this.email, this.password, this.name);
+  UserSignInRequest({
+    required this.email,
+    required this.password,
+    required this.name,
+  });
 
   @JsonKey(name: 'email')
   final String email;
