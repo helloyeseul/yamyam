@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:yamstack/src/data/source/remote/mapper/response_mapper.dart';
 
-class ApiConnect extends GetConnect {
+class ApiClient extends GetConnect {
   @override
   void onInit() {
     super.onInit();
@@ -15,12 +15,14 @@ class ApiConnect extends GetConnect {
     });
   }
 
-  Future<T> getSingle<T>(String url, Map<String, dynamic> request) async {
+  Future<T> getSingleResponse<T>(
+      String url, Map<String, dynamic> request) async {
     final response = await get(url, query: request);
     return response.mapResponseOrError<T>();
   }
 
-  Future<T> postSingle<T>(String url, Map<String, dynamic> request) async {
+  Future<T> postSingleResponse<T>(
+      String url, Map<String, dynamic> request) async {
     final response = await post(url, request);
     return response.mapResponseOrError<T>();
   }
