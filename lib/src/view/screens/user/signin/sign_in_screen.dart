@@ -37,18 +37,20 @@ class SignInScreen extends GetView<SignInController> {
                 onTextChanged: controller.onPasswordChanged,
               ),
               const SizedBox(height: 56),
-              Obx(() => RoundButton(
-                    onPressed: controller.isAllFieldNotEmpty
-                        ? controller.onSignInButtonClicked
-                        : null,
-                    text: '로그인',
-                    backgroundColor: controller.isAllFieldNotEmpty
-                        ? ColorResource.yellow
-                        : ColorResource.grey_0xffd9d9d9,
-                    textColor: controller.isAllFieldNotEmpty
-                        ? ColorResource.white
-                        : ColorResource.black_0xff202020.withAlpha(20),
-                  )),
+              Obx(
+                () => RoundButton(
+                  onPressed: controller.isAllFieldNotEmpty
+                      ? controller.onSignInButtonClicked
+                      : null,
+                  text: '로그인',
+                  backgroundColor: controller.isAllFieldNotEmpty
+                      ? ColorResource.yellow
+                      : ColorResource.grey_0xffd9d9d9,
+                  textColor: controller.isAllFieldNotEmpty
+                      ? ColorResource.white
+                      : ColorResource.black_0xff202020.withAlpha(20),
+                ),
+              ),
               const SizedBox(height: 16),
               Center(
                 child: NotoSansText(
