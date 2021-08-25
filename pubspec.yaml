@@ -20,19 +20,21 @@ dependencies:
   json_annotation: ^4.1.0
 
 dev_dependencies:
-  # test
-  test: ^1.17.11
+  flutter_test:
+    sdk: flutter
+
+  test:
+  build_runner: ^2.0.0
   mockito: ^5.0.15
+
+  # json serializer
+  json_serializable: ^5.0.0
 
   #  dart's lint settings
   lint: ^1.6.0
 
   #  debugging
   logger: ^1.0.0
-
-  # json serializer
-  build_runner: ^2.1.1
-  json_serializable: ^5.0.0
 
 flutter:
   uses-material-design: true
