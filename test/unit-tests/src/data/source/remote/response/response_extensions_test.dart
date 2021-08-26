@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:test/test.dart';
 import 'package:yamstack/src/data/exception/defined_exception.dart';
 import 'package:yamstack/src/data/repository/user/login/exception/user_login_exceptions.dart';
@@ -27,7 +25,9 @@ void main() {
         };
 
         // when
-        final result = (ResponseBuilder()..addBody(responseBody))
+        final result = (ResponseBuilder()
+              ..addBody(responseBody)
+              ..setStatusCode(200))
             .build()
             .mapResponseOrError<UserTokenResponse>();
 
@@ -54,7 +54,9 @@ void main() {
         };
 
         // when
-        final result = (ResponseBuilder()..addBody(responseBody))
+        final result = (ResponseBuilder()
+              ..addBody(responseBody)
+              ..setStatusCode(401))
             .build()
             .mapResponseOrError<UserTokenResponse>();
 
@@ -71,25 +73,14 @@ void main() {
         };
 
         // when
-        final result = (ResponseBuilder()..addBody(responseBody))
+        final result = (ResponseBuilder()
+              ..setStatusCode(405)
+              ..addBody(responseBody))
             .build()
             .mapResponseOrError<UserTokenResponse>();
 
         // then
         expect(result, throwsA(isA<UnknownException>()));
-      });
-    });
-
-    group('FAIL: HTTP 통신 오류', () {
-      test('http error', () {
-        // when
-        final result = (ResponseBuilder()..setStatusCode(400)).build();
-
-        // then
-        expect(
-          result.mapResponseOrError<UserTokenResponse>(),
-          throwsA(isA<HttpException>()),
-        );
       });
     });
   });
