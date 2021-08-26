@@ -5,10 +5,10 @@ import 'package:yamstack/src/data/source/remote/api/user/login/response/user_tok
 import 'package:yamstack/src/data/source/remote/api/user/login/user_api.dart';
 import 'package:yamstack/src/data/source/remote/api/user/login/user_api_impl.dart';
 
-import '../../mock_api_client.dart';
+import '../../mock_dio_client.dart';
 
 void main() {
-  final client = MockApiClient<UserTokenResponse>();
+  final client = MockDioClient();
   final UserApi api = UserApiImpl(client);
 
   group('UserApiTest', () {
