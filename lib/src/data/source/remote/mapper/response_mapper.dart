@@ -1,4 +1,4 @@
-import 'package:yamstack/src/data/source/remote/api/user/response/user_sign_response.dart';
+import 'package:yamstack/src/data/source/remote/api/user/login/response/user_sign_response.dart';
 
 typedef FromJson<T> = T Function(Map<String, dynamic>);
 
