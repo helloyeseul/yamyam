@@ -17,10 +17,18 @@ dependencies:
   flutter_svg: ^0.22.0
 
   get: ^4.3.6
+  json_annotation: ^4.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  test:
+  build_runner: ^2.0.0
+  mockito: ^5.0.15
+
+  # json serializer
+  json_serializable: ^5.0.0
 
   #  dart's lint settings
   lint: ^1.6.0
