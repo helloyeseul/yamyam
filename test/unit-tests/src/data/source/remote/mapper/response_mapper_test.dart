@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:logger/logger.dart';
 import 'package:test/test.dart';
-import 'package:yamstack/src/data/source/remote/api/user/response/user_sign_response.dart';
-import 'package:yamstack/src/data/source/remote/mapper/response_mapper.dart';
+import 'package:yamstack/src/data/source/remote/api/user/login/response/user_token_response.dart';
+import 'package:yamstack/src/data/source/remote/response/response_mapper.dart';
 
 void main() {
   final logger = Logger();
@@ -20,7 +20,7 @@ void main() {
       }''';
 
     // when
-    final response = mapResponse<UserSignResponse>(
+    final response = mapResponse<UserTokenResponse>(
       json.decode(successResponse) as Map<String, dynamic>,
     );
 
@@ -38,7 +38,7 @@ void main() {
       }''';
 
     // when
-    final response = mapResponse<UserSignResponse>(
+    final response = mapResponse<UserTokenResponse>(
       json.decode(errorResponse) as Map<String, dynamic>,
     );
 

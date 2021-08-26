@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:yamstack/src/data/repository/user/login/user_repository.dart';
 import 'package:yamstack/src/view/screens/user/signin/sign_in_user_model.dart';
 
 class SignInController extends GetxController {
+  SignInController(this._repository);
+
+  final UserRepository _repository;
+
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
 
   final _signInUser = SignInUserModel().obs;
 
   SignInUserModel get signInUser => _signInUser.value;
-
-  String get emailText => _signInUser.value.email;
-
-  String get passwordText => _signInUser.value.password;
 
   void onEmailChanged(String email) {
     _signInUser.update((user) {
@@ -27,9 +28,10 @@ class SignInController extends GetxController {
   }
 
   void onSignInButtonClicked() {
-    print(signInUser);
+    _repository.signIn(signInUser);
   }
 
   bool get isAllFieldNotEmpty =>
-      emailText.isNotEmpty && passwordText.isNotEmpty;
+      _signInUser.value.email.isNotEmpty &&
+      _signInUser.value.password.isNotEmpty;
 }
