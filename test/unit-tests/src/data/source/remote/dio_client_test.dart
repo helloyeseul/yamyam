@@ -1,11 +1,9 @@
-import 'package:get/get.dart';
 import 'package:test/test.dart';
 import 'package:yamstack/src/data/source/remote/api/user/login/response/user_token_response.dart';
-import 'package:yamstack/src/data/source/remote/api_client.dart';
+import 'package:yamstack/src/data/source/remote/dio_client.dart';
 
 void main() {
-  Get.put(ApiClient());
-  final client = Get.find<ApiClient>();
+  final client = DioClient();
 
   group('ApiClientTest', () {
     test('get test', () async {

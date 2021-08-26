@@ -1,8 +1,8 @@
 import 'package:mockito/mockito.dart';
-import 'package:yamstack/src/data/source/remote/api_client.dart';
+import 'package:yamstack/src/data/source/remote/dio_client.dart';
 
-class MockApiClient<T> extends Mock implements ApiClient {
-  T? response;
+class MockDioClient extends Mock implements DioClient {
+  dynamic response;
 
   @override
   Future<T> postSingleResponse<T>(String? url, Map? request) async =>
