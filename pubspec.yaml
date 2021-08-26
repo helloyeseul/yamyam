@@ -17,6 +17,7 @@ dependencies:
   flutter_svg: ^0.22.0
 
   get: ^4.3.6
+  dio: ^4.0.0
   json_annotation: ^4.1.0
 
 dev_dependencies:
