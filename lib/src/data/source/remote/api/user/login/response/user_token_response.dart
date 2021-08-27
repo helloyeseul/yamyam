@@ -5,13 +5,13 @@ part 'user_token_response.g.dart';
 
 @JsonSerializable(createToJson: false)
 class UserTokenResponse extends BaseResponse {
-  UserTokenResponse(
-    String message,
-    String code,
-    int status,
-    this.accessToken,
-    this.refreshToken,
-  ) : super(message, code, status);
+  UserTokenResponse({
+    required String message,
+    required String code,
+    required int status,
+    required this.accessToken,
+    required this.refreshToken,
+  }) : super(message, code, status);
 
   @JsonKey(name: 'accessToken')
   final String? accessToken;

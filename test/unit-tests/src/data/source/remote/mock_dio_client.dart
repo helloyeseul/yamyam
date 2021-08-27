@@ -1,15 +1,17 @@
+import 'package:dio/dio.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yamstack/src/data/source/remote/dio_client.dart';
+import 'package:yamstack/src/data/source/remote/response/response_extensions.dart';
 
 class MockDioClient extends Mock implements DioClient {
-  dynamic response;
+  Response? response;
 
   @override
   Future<T> postSingleResponse<T>(String? url, Map? request) async =>
       super.noSuchMethod(
         Invocation.genericMethod(#postSingleResponse, [T], [url, request]),
-        returnValue: Future<T>.value(response as T),
-        returnValueForMissingStub: Future<T>.value(response as T),
+        returnValue: response!.mapResponseOrError<T>(),
+        returnValueForMissingStub: response!.mapResponseOrError<T>(),
       ) as Future<T>;
 
   @override
@@ -21,7 +23,7 @@ class MockDioClient extends Mock implements DioClient {
           [url],
           {#request: request},
         ),
-        returnValue: Future<T>.value(response as T),
-        returnValueForMissingStub: Future<T>.value(response as T),
+        returnValue: response!.mapResponseOrError<T>(),
+        returnValueForMissingStub: response!.mapResponseOrError<T>(),
       ) as Future<T>;
 }

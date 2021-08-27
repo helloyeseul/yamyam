@@ -7,3 +7,7 @@ class VerifyRequiredException extends DefinedException {
 class WrongIdOrPasswordException extends DefinedException {
   const WrongIdOrPasswordException() : super('잘못된 아이디 또는 비밀번호입니다.');
 }
+
+class DuplicateAccountException extends DefinedException {
+  const DuplicateAccountException() : super('중복된 아이디 또는 이름입니다.');
+}

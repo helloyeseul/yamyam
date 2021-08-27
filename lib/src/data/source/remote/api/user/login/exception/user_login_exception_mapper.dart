@@ -13,4 +13,6 @@ final Map<Pair<String, String>, Mapper> exceptionMapper =
     <Pair<String, String>, Mapper>{
   const Pair('LOGIN_FAILED', 'AUTH_002'): () =>
       const WrongIdOrPasswordException(),
+  const Pair('DUPLICATED_ACCOUNT', 'DUPLICATED_ACCOUNT'): () =>
+      const DuplicateAccountException(),
 };
