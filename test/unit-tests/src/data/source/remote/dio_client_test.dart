@@ -8,39 +8,51 @@ void main() {
   final client = DioClient();
 
   group('ApiClientTest', () {
-    test('get test', () async {
-      // given
-      const url = '/login/nameCheck';
-      const name = 'test';
+    group('GET 테스트', () {
+      test('성공 테스트', () {
+        // given
+        const url = '/login/nameCheck';
+        const name = 'test';
 
-      // when
-      final responseFuture =
-          client.getSingleResponse<EmptyResponse>('$url/$name');
+        // when
+        final responseFuture =
+            client.getSingleResponse<EmptyResponse>('$url/$name');
 
-      // then
-      expect(
-        responseFuture,
-        completion(isA<BaseSingleResponse<EmptyResponse>>()),
-      );
+        // then
+        expect(
+          responseFuture,
+          completion(isA<BaseSingleResponse<EmptyResponse>>()),
+        );
+        expect(
+          responseFuture.then((value) => value.status),
+          completion(equals(200)),
+        );
+      });
     });
 
-    test('post test', () async {
-      // given
-      const url = '/login/sign';
-      final request = <String, dynamic>{
-        'email': 'hello@flutter.com',
-        'password': '1234',
-      };
+    group('POST 테스트', () {
+      test('성공 테스트', () {
+        // given
+        const url = '/login/sign';
+        final request = <String, dynamic>{
+          'email': 'hello@flutter.com',
+          'password': '1234',
+        };
 
-      // when
-      final responseFuture =
-          client.postSingleResponse<UserTokenResponse>(url, request);
+        // when
+        final responseFuture =
+            client.postSingleResponse<UserTokenResponse>(url, request);
 
-      // then
-      expect(
-        responseFuture,
-        completion(isA<BaseSingleResponse<UserTokenResponse>>()),
-      );
+        // then
+        expect(
+          responseFuture,
+          completion(isA<BaseSingleResponse<UserTokenResponse>>()),
+        );
+        expect(
+          responseFuture.then((value) => value.status),
+          completion(equals(200)),
+        );
+      });
     });
   });
 }

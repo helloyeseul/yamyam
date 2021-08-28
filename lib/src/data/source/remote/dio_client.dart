@@ -32,6 +32,9 @@ class DioClient {
       ]);
   }
 
+  /// request method : [GET]
+  /// response data type : [BaseSingleResponse<T>]
+  /// T 타입은 ResponseConverter<T> 에서 해당 타입의 데이터로 매핑
   Future<BaseSingleResponse<T>> getSingleResponse<T>(
     String url, {
     Map<String, dynamic>? request,
@@ -40,6 +43,9 @@ class DioClient {
     return response.mapSingleResponseOrError<T>();
   }
 
+  /// request method : [POST]
+  /// response data type : [BaseSingleResponse<T>]
+  /// T 타입은 ResponseConverter<T> 에서 해당 타입의 데이터로 매핑
   Future<BaseSingleResponse<T>> postSingleResponse<T>(
     String url,
     Map<String, dynamic> request,
