@@ -1,17 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:yamstack/src/data/source/remote/response/base_response.dart';
 
 part 'user_token_response.g.dart';
 
-@JsonSerializable(createToJson: false)
-class UserTokenResponse extends BaseResponse {
+@JsonSerializable(explicitToJson: true, createToJson: false)
+class UserTokenResponse {
   UserTokenResponse({
-    required String message,
-    required String code,
-    required int status,
     required this.accessToken,
     required this.refreshToken,
-  }) : super(message, code, status);
+  });
 
   @JsonKey(name: 'accessToken')
   final String? accessToken;

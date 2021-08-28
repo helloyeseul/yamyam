@@ -1,6 +1,8 @@
 import 'package:test/test.dart';
 import 'package:yamstack/src/data/source/remote/api/user/login/response/user_token_response.dart';
 import 'package:yamstack/src/data/source/remote/dio_client.dart';
+import 'package:yamstack/src/data/source/remote/response/base_single_response.dart';
+import 'package:yamstack/src/data/source/remote/response/empty_response.dart';
 
 void main() {
   final client = DioClient();
@@ -13,10 +15,13 @@ void main() {
 
       // when
       final responseFuture =
-          client.getSingleResponse<UserTokenResponse>('$url/$name');
+          client.getSingleResponse<EmptyResponse>('$url/$name');
 
       // then
-      expect(responseFuture, completion(isA<UserTokenResponse>()));
+      expect(
+        responseFuture,
+        completion(isA<BaseSingleResponse<EmptyResponse>>()),
+      );
     });
 
     test('post test', () async {
@@ -32,7 +37,10 @@ void main() {
           client.postSingleResponse<UserTokenResponse>(url, request);
 
       // then
-      expect(responseFuture, completion(isA<UserTokenResponse>()));
+      expect(
+        responseFuture,
+        completion(isA<BaseSingleResponse<UserTokenResponse>>()),
+      );
     });
   });
 }

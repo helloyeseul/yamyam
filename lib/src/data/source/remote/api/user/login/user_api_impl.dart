@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:yamstack/src/data/source/remote/api/user/login/request/user_join_request.dart';
 import 'package:yamstack/src/data/source/remote/api/user/login/request/user_sign_in_request.dart';
-import 'package:yamstack/src/data/source/remote/api/user/login/response/user_token_response.dart';
 import 'package:yamstack/src/data/source/remote/api/user/login/user_api.dart';
 import 'package:yamstack/src/data/source/remote/dio_client.dart';
+import 'package:yamstack/src/data/source/remote/response/base_single_response.dart';
+import 'package:yamstack/src/data/source/remote/response/empty_response.dart';
 
 class UserApiImpl implements UserApi {
   const UserApiImpl(this._client);
@@ -12,10 +13,10 @@ class UserApiImpl implements UserApi {
   final DioClient _client;
 
   @override
-  Future<UserTokenResponse> signIn(UserSignInRequest request) =>
-      _client.postSingleResponse('/login/sign', request.toJson());
+  Future<BaseSingleResponse<EmptyResponse>> join(UserJoinRequest request) =>
+      _client.postSingleResponse('/login/join', request.toJson());
 
   @override
-  Future<UserTokenResponse> join(UserJoinRequest request) =>
-      _client.postSingleResponse('/login/join', request.toJson());
+  Future<BaseSingleResponse<EmptyResponse>> signIn(UserSignInRequest request) =>
+      _client.postSingleResponse('/login/sign', request.toJson());
 }

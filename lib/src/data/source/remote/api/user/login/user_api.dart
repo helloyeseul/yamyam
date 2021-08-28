@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:yamstack/src/data/source/remote/api/user/login/request/user_join_request.dart';
 import 'package:yamstack/src/data/source/remote/api/user/login/request/user_sign_in_request.dart';
-import 'package:yamstack/src/data/source/remote/api/user/login/response/user_token_response.dart';
+import 'package:yamstack/src/data/source/remote/response/base_single_response.dart';
+import 'package:yamstack/src/data/source/remote/response/empty_response.dart';
 
 abstract class UserApi {
-  Future<UserTokenResponse> signIn(UserSignInRequest request);
+  Future<BaseSingleResponse<EmptyResponse>> signIn(UserSignInRequest request);
 
-  Future<UserTokenResponse> join(UserJoinRequest request);
+  Future<BaseSingleResponse<EmptyResponse>> join(UserJoinRequest request);
 }

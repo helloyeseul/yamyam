@@ -65,6 +65,7 @@ void main() {
               ..addBody(body)
               ..setStatusCode(400))
             .build();
+
         final join = api.join(request);
 
         // then

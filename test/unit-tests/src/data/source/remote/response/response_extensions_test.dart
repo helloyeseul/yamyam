@@ -29,18 +29,7 @@ void main() {
               ..addBody(responseBody)
               ..setStatusCode(200))
             .build()
-            .mapResponseOrError<UserTokenResponse>();
-
-        // then
-        expect(
-          result.then((value) => value.refreshToken),
-          completion(equals(refreshToken)),
-        );
-
-        expect(
-          result.then((value) => value.accessToken),
-          completion(equals(accessToken)),
-        );
+            .mapSingleResponseOrError<UserTokenResponse>();
       });
     });
 
@@ -58,7 +47,7 @@ void main() {
               ..addBody(responseBody)
               ..setStatusCode(401))
             .build()
-            .mapResponseOrError<UserTokenResponse>();
+            .mapSingleResponseOrError<UserTokenResponse>();
 
         // then
         expect(result, throwsA(isA<WrongIdOrPasswordException>()));
@@ -77,7 +66,7 @@ void main() {
               ..setStatusCode(405)
               ..addBody(responseBody))
             .build()
-            .mapResponseOrError<UserTokenResponse>();
+            .mapSingleResponseOrError<UserTokenResponse>();
 
         // then
         expect(result, throwsA(isA<UnknownException>()));

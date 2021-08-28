@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
+import 'package:yamstack/src/data/source/remote/interceptor/response_interceptor.dart';
+import 'package:yamstack/src/data/source/remote/response/base_single_response.dart';
 import 'package:yamstack/src/data/source/remote/response/response_extensions.dart';
 
 class DioClient {
@@ -20,28 +22,29 @@ class DioClient {
           'Charset': 'utf-8'
         },
       ),
-    )..interceptors.add(
+    )..interceptors.addAll([
         LogInterceptor(
           requestHeader: false,
           requestBody: true,
           responseBody: true,
         ),
-      );
+        ResponseInterceptor(),
+      ]);
   }
 
-  Future<T> getSingleResponse<T>(
+  Future<BaseSingleResponse<T>> getSingleResponse<T>(
     String url, {
     Map<String, dynamic>? request,
   }) async {
     final response = await _dio!.get(url, queryParameters: request);
-    return response.mapResponseOrError<T>();
+    return response.mapSingleResponseOrError<T>();
   }
 
-  Future<T> postSingleResponse<T>(
+  Future<BaseSingleResponse<T>> postSingleResponse<T>(
     String url,
     Map<String, dynamic> request,
   ) async {
     final response = await _dio!.post(url, data: request);
-    return response.mapResponseOrError<T>();
+    return response.mapSingleResponseOrError<T>();
   }
 }
