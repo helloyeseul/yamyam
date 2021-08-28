@@ -17,7 +17,7 @@ class DioClient {
     Map<String, dynamic>? request,
   }) async {
     final response = await _dio.get(url, queryParameters: request);
-    return response.mapSingleResponseOrError<T>();
+    return response.mapSingleResponse<T>();
   }
 
   /// request method : [POST]
@@ -28,6 +28,6 @@ class DioClient {
     Map<String, dynamic> request,
   ) async {
     final response = await _dio.post(url, data: request);
-    return response.mapSingleResponseOrError<T>();
+    return response.mapSingleResponse<T>();
   }
 }

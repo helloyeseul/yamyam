@@ -3,7 +3,7 @@ import 'package:yamstack/src/data/exception/defined_exception.dart';
 import 'package:yamstack/src/data/source/remote/response/base_single_response.dart';
 
 extension ResponseExtensions on Response {
-  Future<BaseSingleResponse<T>> mapSingleResponseOrError<T>() {
+  Future<BaseSingleResponse<T>> mapSingleResponse<T>() {
     // 정상
     if (statusCode == 200) {
       // json -> T 타입으로 매핑

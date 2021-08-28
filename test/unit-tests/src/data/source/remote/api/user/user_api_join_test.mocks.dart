@@ -36,7 +36,6 @@ class MockDioClient extends _i1.Mock implements _i3.DioClient {
               returnValue: Future<_i2.BaseSingleResponse<T>>.value(
                   _FakeBaseSingleResponse_0<T>()))
           as _i4.Future<_i2.BaseSingleResponse<T>>);
-
   @override
   _i4.Future<_i2.BaseSingleResponse<T>> postSingleResponse<T>(
           String? url, Map<String, dynamic>? request) =>
@@ -45,7 +44,6 @@ class MockDioClient extends _i1.Mock implements _i3.DioClient {
               returnValue: Future<_i2.BaseSingleResponse<T>>.value(
                   _FakeBaseSingleResponse_0<T>()))
           as _i4.Future<_i2.BaseSingleResponse<T>>);
-
   @override
   String toString() => super.toString();
 }

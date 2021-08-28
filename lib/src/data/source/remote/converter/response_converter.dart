@@ -9,6 +9,10 @@ class ResponseConverter<T> implements JsonConverter<T, Object?> {
 
   @override
   T fromJson(Object? json) {
+    if (json == null) {
+      return EmptyResponse.fromJson({}) as T;
+    }
+
     if (json is Map<String, dynamic>) {
       return ArgumentError.checkNotNull(responseMapper[T])(json) as T;
     }
