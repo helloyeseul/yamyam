@@ -1,11 +1,12 @@
 import 'package:test/test.dart';
+import 'package:yamstack/app/app_binding.dart';
 import 'package:yamstack/src/data/source/remote/api/user/login/response/user_token_response.dart';
 import 'package:yamstack/src/data/source/remote/dio_client.dart';
 import 'package:yamstack/src/data/source/remote/response/base_single_response.dart';
 import 'package:yamstack/src/data/source/remote/response/empty_response.dart';
 
 void main() {
-  final client = DioClient();
+  final client = DioClient(AppBinding().dio);
 
   group('ApiClientTest', () {
     group('GET 테스트', () {

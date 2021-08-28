@@ -1,21 +1,22 @@
 import 'dart:convert';
 
-import 'package:get/get.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:yamstack/src/data/repository/user/login/exception/user_login_exceptions.dart';
 import 'package:yamstack/src/data/source/remote/api/user/login/request/user_join_request.dart';
-import 'package:yamstack/src/data/source/remote/api/user/login/user_api.dart';
+import 'package:yamstack/src/data/source/remote/api/user/login/user_api_impl.dart';
 import 'package:yamstack/src/data/source/remote/dio_client.dart';
+import 'package:yamstack/src/data/source/remote/interceptor/response_interceptor.dart';
+import 'package:yamstack/src/data/source/remote/response/base_single_response.dart';
+import 'package:yamstack/src/data/source/remote/response/empty_response.dart';
 
-import '../../../../../../app/test_binding.dart';
-import '../../mock_dio_client.dart';
-import '../../response/response_builder.dart';
+import 'user_api_join_test.mocks.dart';
 
+@GenerateMocks([DioClient])
 void main() {
-  TestBinding().dependencies();
-
-  final client = Get.find<DioClient>() as MockDioClient;
-  final api = Get.find<UserApi>();
+  final client = MockDioClient();
+  final api = UserApiImpl(client);
 
   final request = UserJoinRequest(
     email: 'hello@flutter.com',
@@ -36,8 +37,14 @@ void main() {
           }''',
         ) as Map<String, dynamic>;
 
+        final responseBody = ResponseInterceptor.formatResponseData(body);
+        final response =
+            BaseSingleResponse<EmptyResponse>.fromJson(responseBody);
+
         // when
-        client.response = (ResponseBuilder()..addBody(body)).build();
+        when(client.postSingleResponse<EmptyResponse>(any, any))
+            .thenAnswer((_) => Future.value(response));
+
         final join = api.join(request);
 
         // then
@@ -61,10 +68,13 @@ void main() {
           }''',
         ) as Map<String, dynamic>;
 
-        client.response = (ResponseBuilder()
-              ..addBody(body)
-              ..setStatusCode(400))
-            .build();
+        final responseBody = ResponseInterceptor.formatResponseData(body);
+        final response =
+            BaseSingleResponse<EmptyResponse>.fromJson(responseBody);
+
+        // when
+        when(client.postSingleResponse<EmptyResponse>(any, any))
+            .thenAnswer((_) => Future.value(response));
 
         final join = api.join(request);
 
