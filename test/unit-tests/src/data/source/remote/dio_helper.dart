@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
-import 'package:yamstack/util/future_helper.dart';
+import 'package:yamstack/extensions/future_helper.dart';
 
-import '../../../../test/test_binding.mocks.dart';
+import '../../../../test_binding.mocks.dart';
 import 'mock_response.dart';
 
 void setupMockDioPostAnswer(int statusCode, String dataString) {

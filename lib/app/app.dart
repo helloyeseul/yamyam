@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:yamstack/app/app_binding.dart';
 import 'package:yamstack/app/app_pages.dart';
-import 'package:yamstack/src/view/screens/intro/splash/splash_screen.dart';
+import 'package:yamstack/view/screens/splash/splash_screen.dart';
 
 void main() {
   runApp(const App());

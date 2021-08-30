@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
 import 'package:test/test.dart';
-import 'package:yamstack/src/data/source/remote/api/user/login/request/user_join_request.dart';
-import 'package:yamstack/src/data/source/remote/api/user/login/user_api.dart';
-import 'package:yamstack/src/data/source/remote/response/exception/defined_exception.dart';
+import 'package:yamstack/data/remote/api/user/login/request/user_join_request.dart';
+import 'package:yamstack/data/remote/api/user/login/user_api.dart';
+import 'package:yamstack/data/remote/response/exception/defined_exceptions.dart';
 
-import '../../../../../../test/test_binding.dart';
-import '../../dio_helper.dart';
+import '../../../../../../test_binding.dart';
 
 void main() {
   late final UserApi api;
@@ -31,12 +30,12 @@ void main() {
               "status": 200
           }''';
 
-      setupMockDioPostAnswer(200, response);
+      // setupMockDioPostAnswer(200, response);
 
       final join = api.join(request);
 
       // then
-      verifyMockDioPostCalled();
+      // verifyMockDioPostCalled();
       expect(join.then((value) => value.message),
           completion(equals('JOIN_SUCCESS')));
       expect(
@@ -55,12 +54,12 @@ void main() {
               "status": "400"
           }''';
 
-      setupMockDioPostAnswer(400, response);
+      // setupMockDioPostAnswer(400, response);
 
       final join = api.join(request);
 
       // then
-      verifyMockDioPostCalled();
+      // verifyMockDioPostCalled();
       expect(join, throwsA(isA<DuplicatedAccountException>()));
     });
   });

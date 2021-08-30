@@ -1,14 +1,15 @@
 import 'package:get/get.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
-import 'package:yamstack/src/data/source/remote/api/user/login/response/user_token_response.dart';
-import 'package:yamstack/src/data/source/remote/dio_client.dart';
-import 'package:yamstack/src/data/source/remote/response/base/base_single_response.dart';
-import 'package:yamstack/src/data/source/remote/response/base/empty_response.dart';
-import 'package:yamstack/util/future_helper.dart';
+import 'package:yamstack/data/remote/api/user/login/response/user_token_response.dart';
+import 'package:yamstack/data/remote/dio/dio_client.dart';
+import 'package:yamstack/data/remote/response/base/base_single_response.dart';
+import 'package:yamstack/data/remote/response/base/empty_response.dart';
+import 'package:yamstack/data/remote/response/exception/defined_exceptions.dart';
+import 'package:yamstack/extensions/future_helper.dart';
 
-import '../../../../test/test_binding.dart';
-import '../../../../test/test_binding.mocks.dart';
+import '../../../../test_binding.dart';
+import '../../../../test_binding.mocks.dart';
 import 'mock_response.dart';
 
 void main() {
@@ -49,14 +50,15 @@ void main() {
   });
 
   group('POST 테스트', () {
-    test('성공 테스트', () {
-      // given
-      const url = '/login/sign';
-      final request = <String, dynamic>{
-        'email': 'hello@flutter.com',
-        'password': '1234',
-      };
+    // given
+    const url = '/login/join';
+    final request = <String, dynamic>{
+      'email': 'hello@flutter.com',
+      'password': '1234',
+      'name': '플러터'
+    };
 
+    test('SUCCESS 테스트', () {
       // when
       when(Get.find<MockDio>().post(any, data: anyNamed('data'))).thenAnswer(
         (_) => MockResponse(
@@ -69,11 +71,11 @@ void main() {
               "accessToken" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGFhYS5iYmIiLCJyb2xlIjoiVVNFUiIsInR5cGUiOiJhY2Nlc3MiLCJleHAiOjE2MjgwMDE0MjR9.ANkMTlZR3IoXam5RTsZALeyCABxsjP9dh-V2EMjlMHU",
               "refreshToken" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGFhYS5iYmIiLCJyb2xlIjoiVVNFUiIsInR5cGUiOiJyZWZyZXNoIiwiZXhwIjoxNjI4MDAxNDI0fQ.xKBoThFP90XEs-OwVLICa7p0atYi6BbTXsbWUdSwzno"
             }''',
-        ).toFuture(),
+            ).toFuture(),
       );
 
       final responseFuture =
-          client.postSingleResponse<UserTokenResponse>(url, request);
+      client.postSingleResponse<UserTokenResponse>(url, request);
 
       // then
       expect(
@@ -83,6 +85,18 @@ void main() {
       expect(
         responseFuture.then((value) => value.status),
         completion(equals(200)),
+      );
+    });
+
+    test('FAIL 테스트', () {
+      // when
+      final responseFuture =
+          client.postSingleResponse<UserTokenResponse>(url, request);
+
+      // then
+      expect(
+        responseFuture,
+        throwsA(isA<DuplicatedAccountException>()),
       );
     });
   });

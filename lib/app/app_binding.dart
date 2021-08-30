@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:yamstack/src/data/repository/user/login/user_repository.dart';
-import 'package:yamstack/src/data/repository/user/login/user_repository_impl.dart';
-import 'package:yamstack/src/data/source/remote/api/user/login/user_api.dart';
-import 'package:yamstack/src/data/source/remote/api/user/login/user_api_impl.dart';
-import 'package:yamstack/src/data/source/remote/dio_client.dart';
-import 'package:yamstack/src/data/source/remote/interceptor/response_interceptor.dart';
+import 'package:yamstack/data/remote/api/user/login/user_api.dart';
+import 'package:yamstack/data/remote/api/user/login/user_api_impl.dart';
+import 'package:yamstack/data/remote/dio/dio_client.dart';
+import 'package:yamstack/data/remote/dio/interceptor/error_interceptor.dart';
+import 'package:yamstack/data/remote/dio/interceptor/response_interceptor.dart';
+import 'package:yamstack/data/repository/user/login/user_repository.dart';
+import 'package:yamstack/data/repository/user/login/user_repository_impl.dart';
 
 class AppBinding extends Bindings {
   static const String _baseUrl = 'http://yam-stack.com';
@@ -42,5 +43,6 @@ class AppBinding extends Bindings {
             responseBody: true,
           ),
           ResponseInterceptor(),
+          ErrorInterceptor(),
         ]);
 }

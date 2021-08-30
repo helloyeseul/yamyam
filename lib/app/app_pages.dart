@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
-import 'package:yamstack/src/view/screens/intro/splash/splash_screen.dart';
-import 'package:yamstack/src/view/screens/intro/welcome/intro_screen.dart';
-import 'package:yamstack/src/view/screens/main/main_binding.dart';
-import 'package:yamstack/src/view/screens/main/main_screen.dart';
-import 'package:yamstack/src/view/screens/user/signin/sign_in_binding.dart';
-import 'package:yamstack/src/view/screens/user/signin/sign_in_screen.dart';
-import 'package:yamstack/src/view/screens/user/signup/sign_up_binding.dart';
-import 'package:yamstack/src/view/screens/user/signup/sign_up_screen.dart';
+import 'package:yamstack/view/screens/intro/intro_screen.dart';
+import 'package:yamstack/view/screens/main/main_binding.dart';
+import 'package:yamstack/view/screens/main/main_screen.dart';
+import 'package:yamstack/view/screens/signin/sign_in_binding.dart';
+import 'package:yamstack/view/screens/signin/sign_in_screen.dart';
+import 'package:yamstack/view/screens/signup/sign_up_binding.dart';
+import 'package:yamstack/view/screens/signup/sign_up_screen.dart';
+import 'package:yamstack/view/screens/splash/splash_screen.dart';
 
 mixin AppPages {
   static final pages = [
