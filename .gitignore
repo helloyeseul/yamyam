@@ -382,4 +382,8 @@ fabric.properties
 
 !/gradle/wrapper/gradle-wrapper.jar
 
+# custom
+*.g.dart
+*.mocks.dart
+
 # End of https://www.toptal.com/developers/gitignore/api/flutter,dart,androidstudio,android,swift

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:yamstack/src/data/source/remote/response/base_single_response.dart';
+import 'package:yamstack/src/data/source/remote/response/base/base_single_response.dart';
 import 'package:yamstack/src/data/source/remote/response/response_extensions.dart';
 
 class DioClient {

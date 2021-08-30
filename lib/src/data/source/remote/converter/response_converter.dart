@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:yamstack/src/data/source/remote/api/user/login/response/user_token_response.dart';
-import 'package:yamstack/src/data/source/remote/response/empty_response.dart';
+import 'package:yamstack/src/data/source/remote/response/base/empty_response.dart';
 
 typedef Mapper<T> = T Function(Map<String, dynamic>);
 
