@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yamstack/data/repository/user/login/user_repository.dart';
 import 'package:yamstack/view/screens/signin/sign_in_user_model.dart';
 
 class SignInController extends GetxController {
-  SignInController(this._repository);
-
-  final UserRepository _repository;
-
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
 
@@ -27,9 +22,7 @@ class SignInController extends GetxController {
     });
   }
 
-  void onSignInButtonClicked() {
-    _repository.signIn(signInUser);
-  }
+  void onSignInButtonClicked() {}
 
   bool get isAllFieldNotEmpty =>
       _signInUser.value.email.isNotEmpty &&
