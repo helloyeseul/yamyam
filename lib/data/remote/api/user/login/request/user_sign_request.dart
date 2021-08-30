@@ -1,10 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'user_sign_in_request.g.dart';
+part 'user_sign_request.g.dart';
 
 @JsonSerializable(explicitToJson: true, createFactory: false)
-class UserSignInRequest {
-  UserSignInRequest({
+class UserSignRequest {
+  UserSignRequest({
     required this.email,
     required this.password,
   });
@@ -15,5 +15,5 @@ class UserSignInRequest {
   @JsonKey(name: 'password')
   final String password;
 
-  Map<String, dynamic> toJson() => _$UserSignInRequestToJson(this);
+  Map<String, dynamic> toJson() => _$UserSignRequestToJson(this);
 }

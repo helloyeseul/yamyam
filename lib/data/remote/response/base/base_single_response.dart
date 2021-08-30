@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:yamstack/data/remote/dio/converter/int_converter.dart';
-import 'package:yamstack/data/remote/dio/converter/response_converter.dart';
+import 'package:yamstack/data/remote/converter/int_converter.dart';
+import 'package:yamstack/data/remote/converter/response_converter.dart';
 
 part 'base_single_response.g.dart';
 

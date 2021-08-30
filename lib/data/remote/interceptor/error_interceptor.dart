@@ -13,9 +13,12 @@ class ErrorInterceptor extends Interceptor {
         json['code']?.toString(),
         err.response?.statusCode,
       );
+      if (err.error != null) {
+        err.type = DioErrorType.other;
+      }
     }
 
-    super.onError(err, handler);
+    handler.next(err);
   }
 }
 
@@ -30,4 +33,8 @@ DefinedException? mapException(String? message, String? code, int? status) {
 final Map<ErrorTuple, Mapper> exceptionMapper = <ErrorTuple, Mapper>{
   const ErrorTuple('DUPLICATED_ACCOUNT', 'DUPLICATED_ACCOUNT', 400): () =>
       const DuplicatedAccountException(),
+  const ErrorTuple('IDENTIFY_FAIL', 'IDENTIFY_FAIL', 400): () =>
+      const IdentifyFailException(),
+  const ErrorTuple('LOGIN_FAILED.', 'AUTH_002', 401): () =>
+      const LoginFailException(),
 };

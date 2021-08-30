@@ -10,7 +10,7 @@ class ResponseInterceptor extends Interceptor {
       response.data = formatResponseData(json);
     }
 
-    return super.onResponse(response, handler);
+    handler.next(response);
   }
 
   @visibleForTesting
