@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:tuple/tuple.dart';
-import 'package:yamstack/data/remote/response/exception/defined_exceptions.dart';
+import 'package:yamstack/data/exception/defined_exceptions.dart';
 
 class ErrorInterceptor extends Interceptor {
   @override
@@ -13,9 +13,6 @@ class ErrorInterceptor extends Interceptor {
         json['code']?.toString(),
         err.response?.statusCode,
       );
-      if (err.error != null) {
-        err.type = DioErrorType.other;
-      }
     }
 
     handler.next(err);

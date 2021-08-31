@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:test/test.dart';
 import 'package:yamstack/app/app_binding.dart';
+import 'package:yamstack/data/exception/defined_exceptions.dart';
 import 'package:yamstack/data/remote/api/user/login/request/user_identify_request.dart';
 import 'package:yamstack/data/remote/api/user/login/request/user_join_request.dart';
 import 'package:yamstack/data/remote/api/user/login/request/user_sign_request.dart';
@@ -8,7 +9,6 @@ import 'package:yamstack/data/remote/api/user/login/response/user_token_response
 import 'package:yamstack/data/remote/api/user/login/user_login_api.dart';
 import 'package:yamstack/data/remote/response/base/base_single_response.dart';
 import 'package:yamstack/data/remote/response/base/empty_response.dart';
-import 'package:yamstack/data/remote/response/exception/defined_exceptions.dart';
 
 void main() {
   final api = UserLoginApi(AppBinding().dio);

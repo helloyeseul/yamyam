@@ -7,7 +7,15 @@ class UnknownException extends DefinedException {
 }
 
 class DuplicatedAccountException extends DefinedException {
-  const DuplicatedAccountException() : super('중복된 아이디 또는 이름입니다.');
+  const DuplicatedAccountException() : super('중복된 아이디 또는 닉네임입니다.');
+}
+
+class DuplicatedEmailException extends DefinedException {
+  const DuplicatedEmailException() : super('이미 존재하는 이메일입니다.');
+}
+
+class DuplicatedNameException extends DefinedException {
+  const DuplicatedNameException() : super('이미 존재하는 닉네임입니다.');
 }
 
 class IdentifyFailException extends DefinedException {
