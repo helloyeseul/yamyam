@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:yamstack/view/screens/intro/intro_screen.dart';
+import 'package:yamstack/view/screens/join/join_binding.dart';
+import 'package:yamstack/view/screens/join/join_screen.dart';
 import 'package:yamstack/view/screens/main/main_binding.dart';
 import 'package:yamstack/view/screens/main/main_screen.dart';
 import 'package:yamstack/view/screens/signin/sign_in_binding.dart';
@@ -17,6 +19,11 @@ mixin AppPages {
     GetPage(
       name: IntroScreen.route,
       page: () => const IntroScreen(),
+    ),
+    GetPage(
+      name: JoinScreen.route,
+      page: () => const JoinScreen(),
+      binding: JoinBinding(),
     ),
     GetPage(
       name: SignInScreen.route,

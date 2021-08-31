@@ -4,9 +4,9 @@ import 'package:yamstack/resource/color_resource.dart';
 import 'package:yamstack/view/common/components/button/round_button.dart';
 import 'package:yamstack/view/common/components/button/round_outlined_button.dart';
 import 'package:yamstack/view/common/components/text/fontstyle/noto_sans.dart';
+import 'package:yamstack/view/screens/join/join_screen.dart';
 import 'package:yamstack/view/screens/main/main_screen.dart';
 import 'package:yamstack/view/screens/signin/sign_in_screen.dart';
-import 'package:yamstack/view/screens/signup/sign_up_screen.dart';
 
 class IntroButtonsContainer extends StatelessWidget {
   const IntroButtonsContainer({Key? key}) : super(key: key);
@@ -29,7 +29,7 @@ class IntroButtonsContainer extends StatelessWidget {
           const SizedBox(height: 16),
           RoundOutlinedButton(
             onPressed: () {
-              Get.toNamed(SignUpScreen.route);
+              Get.toNamed(JoinScreen.route);
             },
             text: '회원가입',
           ),

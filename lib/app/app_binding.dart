@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:yamstack/data/remote/api/user/login/user_login_api.dart';
 import 'package:yamstack/data/remote/interceptor/error_interceptor.dart';
 import 'package:yamstack/data/remote/interceptor/response_interceptor.dart';
+import 'package:yamstack/data/repository/user/login/user_login_repository.dart';
+import 'package:yamstack/data/repository/user/login/user_login_repository_impl.dart';
 
 class AppBinding extends Bindings {
   static const String _baseUrl = 'http://yam-stack.com';
@@ -12,6 +14,10 @@ class AppBinding extends Bindings {
   void dependencies() {
     Get.put<Dio>(dio, permanent: true);
     Get.put(UserLoginApi(Get.find<Dio>()), permanent: true);
+    Get.put<UserLoginRepository>(
+      UserLoginRepositoryImpl(Get.find()),
+      permanent: true,
+    );
   }
 
   @visibleForTesting

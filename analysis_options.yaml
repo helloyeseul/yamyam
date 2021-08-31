@@ -8,6 +8,7 @@ linter:
     prefer_relative_imports: false
     avoid_redundant_argument_values: false
     sort_pub_dependencies: false
+    avoid_catching_errors: false
 
     avoid_empty_else: true
     avoid_print: true
@@ -30,7 +31,6 @@ linter:
     always_require_non_null_named_parameters: true
     annotate_overrides: true
     avoid_catches_without_on_clauses: true
-    avoid_catching_errors: true
     avoid_classes_with_only_static_members: true
     avoid_equals_and_hash_code_on_mutable_classes: true
     avoid_function_literals_in_foreach_calls: true
