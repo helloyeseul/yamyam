@@ -10,30 +10,27 @@ linter:
     sort_pub_dependencies: false
     avoid_catching_errors: false
     avoid_setters_without_getters: false
-  <<<<<<< Updated upstream
-  =======
-avoid_positional_boolean_parameters: false
-  >>>>>>> Stashed changes
+    avoid_positional_boolean_parameters: false
 
-avoid_empty_else: true
-avoid_print: true
-avoid_relative_lib_imports: true
-avoid_types_as_parameter_names: true
-avoid_web_libraries_in_flutter: true
-avoid_returning_null_for_future: true
-control_flow_in_finally: true
-empty_statements: true
-hash_and_equals: true
-  iterable_contains_unrelated_type: true
-  list_remove_unrelated_type: true
-  no_duplicate_case_values: true
-  no_logic_in_create_state: true
-  prefer_void_to_null: true
-  unrelated_type_equality_checks: true
-  use_key_in_widget_constructors: true
-  valid_regexps: true
-  always_declare_return_types: true
-  always_require_non_null_named_parameters: true
+    avoid_empty_else: true
+    avoid_print: true
+    avoid_relative_lib_imports: true
+    avoid_types_as_parameter_names: true
+    avoid_web_libraries_in_flutter: true
+    avoid_returning_null_for_future: true
+    control_flow_in_finally: true
+    empty_statements: true
+    hash_and_equals: true
+    iterable_contains_unrelated_type: true
+    list_remove_unrelated_type: true
+    no_duplicate_case_values: true
+    no_logic_in_create_state: true
+    prefer_void_to_null: true
+    unrelated_type_equality_checks: true
+    use_key_in_widget_constructors: true
+    valid_regexps: true
+    always_declare_return_types: true
+    always_require_non_null_named_parameters: true
     annotate_overrides: true
     avoid_catches_without_on_clauses: true
     avoid_classes_with_only_static_members: true
