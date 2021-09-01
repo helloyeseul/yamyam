@@ -9,6 +9,8 @@ class RoundButton extends StatelessWidget {
     this.textColor = Colors.black,
     this.backgroundColor = Colors.white,
     this.borderRadius = 4.0,
+    this.height = 48.0,
+    this.textSize = 16.0,
   }) : super(key: key);
 
   final Function()? onPressed;
@@ -16,17 +18,20 @@ class RoundButton extends StatelessWidget {
   final Color textColor;
   final Color backgroundColor;
   final double borderRadius;
+  final double height;
+  final double textSize;
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
       child: Container(
-        height: 48,
+        height: height,
         color: backgroundColor,
         child: TextButton(
-            onPressed: onPressed,
-            child: NotoSansText(text, size: 16, color: textColor)),
+          onPressed: onPressed,
+          child: NotoSansText(text, size: textSize, color: textColor),
+        ),
       ),
     );
   }

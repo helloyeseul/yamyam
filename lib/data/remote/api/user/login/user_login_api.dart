@@ -6,8 +6,8 @@ import 'package:yamstack/data/remote/api/user/login/request/user_identify_reques
 import 'package:yamstack/data/remote/api/user/login/request/user_join_request.dart';
 import 'package:yamstack/data/remote/api/user/login/request/user_sign_request.dart';
 import 'package:yamstack/data/remote/api/user/login/response/user_token_response.dart';
-import 'package:yamstack/data/remote/response/base/base_single_response.dart';
-import 'package:yamstack/data/remote/response/base/empty_response.dart';
+import 'package:yamstack/data/remote/response/base_single_response.dart';
+import 'package:yamstack/data/remote/response/empty_response.dart';
 
 part 'user_login_api.g.dart';
 

@@ -17,21 +17,21 @@ class UserLoginRepositoryImpl implements UserLoginRepository {
       );
 
   @override
-  Future<void> checkName(String name) => api.nameCheck(name).then(
+  Future<String> checkName(String name) => api.nameCheck(name).then(
         (value) => value.message == 'true'
-            ? Future.value()
+            ? Future.value('사용하실 수 있는 닉네임입니다.')
             : Future.error(const DuplicatedNameException()),
       );
 
   @override
-  Future<void> join(UserJoinModel model) {
-    try {
-      return api.join(model.toRequest()).then((value) => Future.value());
-    } on DioError catch (e) {
-      if (e.error is DefinedException) {
-        return Future.error(e.error as DefinedException);
-      }
-      return Future.error(e);
-    }
+  Future<void> join(UserJoinModel model) async {
+    return api.join(model.toRequest()).then((value) => Future.value()).onError(
+      (error, stackTrace) {
+        if (error is DioError) {
+          return Future.error(error.error as DefinedException);
+        }
+        return Future.error(const UnknownException());
+      },
+    );
   }
 }

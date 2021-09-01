@@ -23,8 +23,8 @@ class BaseSingleResponse<T> {
   @IntConverter()
   final int status;
 
-  @ResponseConverter()
   @JsonKey(name: 'data')
+  @ResponseConverter()
   final T data;
 
   factory BaseSingleResponse.fromJson(Map<String, dynamic> json) {

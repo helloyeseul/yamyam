@@ -6,9 +6,9 @@ import 'package:yamstack/view/screens/main/main_binding.dart';
 import 'package:yamstack/view/screens/main/main_screen.dart';
 import 'package:yamstack/view/screens/signin/sign_in_binding.dart';
 import 'package:yamstack/view/screens/signin/sign_in_screen.dart';
-import 'package:yamstack/view/screens/signup/sign_up_binding.dart';
-import 'package:yamstack/view/screens/signup/sign_up_screen.dart';
 import 'package:yamstack/view/screens/splash/splash_screen.dart';
+import 'package:yamstack/view/screens/validate/validate_binding.dart';
+import 'package:yamstack/view/screens/validate/validate_screen.dart';
 
 mixin AppPages {
   static final pages = [
@@ -26,14 +26,14 @@ mixin AppPages {
       binding: JoinBinding(),
     ),
     GetPage(
+      name: ValidateScreen.route,
+      page: () => const ValidateScreen(),
+      binding: ValidateBinding(),
+    ),
+    GetPage(
       name: SignInScreen.route,
       page: () => const SignInScreen(),
       binding: SignInBinding(),
-    ),
-    GetPage(
-      name: SignUpScreen.route,
-      page: () => const SignUpScreen(),
-      binding: SignUpBinding(),
     ),
     GetPage(
       name: MainScreen.route,

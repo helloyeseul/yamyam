@@ -11,4 +11,5 @@ abstract class ColorResource {
   static const Color grey_0xff959595 = Color(0xff959595);
   static const Color grey_0xff696969 = Color(0xff696969);
   static const Color grey_0xffd9d9d9 = Color(0xffd9d9d9);
+  static const Color red = Color(0xffff3535);
 }
