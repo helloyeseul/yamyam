@@ -7,8 +7,8 @@ import 'package:yamstack/data/remote/api/user/login/request/user_join_request.da
 import 'package:yamstack/data/remote/api/user/login/request/user_sign_request.dart';
 import 'package:yamstack/data/remote/api/user/login/response/user_token_response.dart';
 import 'package:yamstack/data/remote/api/user/login/user_login_api.dart';
-import 'package:yamstack/data/remote/response/base/base_single_response.dart';
-import 'package:yamstack/data/remote/response/base/empty_response.dart';
+import 'package:yamstack/data/remote/response/base_single_response.dart';
+import 'package:yamstack/data/remote/response/empty_response.dart';
 
 void main() {
   final api = UserLoginApi(AppBinding().dio);

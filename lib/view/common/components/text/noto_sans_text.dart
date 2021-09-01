@@ -14,6 +14,7 @@ class NotoSansText extends Text {
   }) : super(
           text,
           key: key,
+          textAlign: TextAlign.center,
           style: GoogleFonts.notoSans(
             textStyle: TextStyle(
               fontWeight: fontWeight,

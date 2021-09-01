@@ -1,61 +1,104 @@
-import 'dart:collection';
-
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:yamstack/data/exception/defined_exceptions.dart';
 import 'package:yamstack/data/repository/user/login/user_login_repository.dart';
-import 'package:yamstack/view/screens/join/user_join_form.dart';
+import 'package:yamstack/view/screens/join/components/join_name_check_dialog.dart';
+import 'package:yamstack/view/screens/join/join_form.dart';
+import 'package:yamstack/view/screens/validate/validate_screen.dart';
 
-enum Controllers { email, name, password, passwordRepeat }
+enum Field { email, name, password, passwordRepeat }
 
 class JoinController extends GetxController {
   JoinController(this.repository);
 
   final UserLoginRepository repository;
 
-  final Map<Controllers, TextEditingController> controllers =
-      HashMap<Controllers, TextEditingController>();
+  final Map<Field, TextEditingController> textControllers =
+      <Field, TextEditingController>{
+    Field.email: TextEditingController(),
+    Field.name: TextEditingController(),
+    Field.password: TextEditingController(),
+    Field.passwordRepeat: TextEditingController(),
+  };
 
-  final _joinForm = UserJoinForm().obs;
+  final _joinForm = JoinForm().obs;
 
-  UserJoinForm get joinForm => _joinForm.value;
+  JoinForm get joinForm => _joinForm.value;
 
-  void onPressNameCheck() {
-    final name = joinForm.name;
-
-    if (name.isBlank ?? true) {
-      // 닉네임을 입력해주세요
-      return;
-    }
-
-    _observeNameCheck(name!);
-  }
-
-  void _observeNameCheck(final String name) {
-    repository.checkName(name).then((value) {
-      // 사용 가능한 닉네임 입니다
-      print('사용 가능한 닉네임 입니다');
-    }).onError((error, stackTrace) {
-      // 중복된 닉네임이 존재합니다.
-      print('중복된 닉네임이 존재합니다');
+  void onEmailChanged(String value) {
+    _joinForm.update((form) {
+      form!.email = value;
     });
   }
 
-  void onPressAgreeWithTerms() {
-    joinForm.toggleAgreeWithTerms();
+  void onNameChanged(String value) {
+    _joinForm.update((form) {
+      form!.name = value;
+    });
+  }
+
+  void onPasswordChanged(String value) {
+    _joinForm.update((form) {
+      form!.password = value;
+    });
+  }
+
+  void onPasswordRepeatChanged(String value) {
+    _joinForm.update((form) {
+      form!.passwordRepeat = value;
+    });
+  }
+
+  void onPressNameCheck() {
+    final name = joinForm.name;
+    if (name == null || name.isEmpty) return;
+    _observeNameCheck(name);
+  }
+
+  void onPressAgreeWithTerms(bool? agree) {
+    _joinForm.update((form) {
+      joinForm.isAgreeWithTerms = agree!;
+    });
   }
 
   void onPressJoin() {
     try {
-      repository.join(joinForm.toModel());
+      joinForm.validateInput();
+      repository.join(joinForm.toModel()).then((_) {
+        Get.offNamed(ValidateScreen.route);
+      }).onError(
+        (error, stackTrace) {
+          if (error is FormatException) {
+            _showSingleMessageDialog(error.message);
+          }
+        },
+      );
     } on AssertionError catch (e) {
-      // 화면에 에러 메시지 표시
-      print(e.message);
+      _showSingleMessageDialog(e.message.toString());
     }
+  }
+
+  void _observeNameCheck(final String name) {
+    repository.checkName(name).then((message) {
+      joinForm.isNameValidated = true;
+      _showSingleMessageDialog(message);
+    }).onError(
+      (error, stackTrace) {
+        joinForm.isNameValidated = false;
+        if (error is DuplicatedNameException) {
+          _showSingleMessageDialog(error.message);
+        }
+      },
+    );
+  }
+
+  void _showSingleMessageDialog(final String message) {
+    Get.dialog(JoinNameCheckDialog(message: message));
   }
 
   @override
   void onClose() {
-    controllers.forEach((key, value) => value.dispose());
+    textControllers.forEach((key, value) => value.dispose());
     super.onClose();
   }
 }
