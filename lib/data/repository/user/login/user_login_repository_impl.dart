@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:yamstack/data/exception/defined_exceptions.dart';
 import 'package:yamstack/data/remote/api/user/login/user_login_api.dart';
 import 'package:yamstack/data/repository/user/login/model/user_join_model.dart';
+import 'package:yamstack/data/repository/user/login/model/user_verify_model.dart';
 import 'package:yamstack/data/repository/user/login/user_login_repository.dart';
 
 class UserLoginRepositoryImpl implements UserLoginRepository {
@@ -33,5 +34,15 @@ class UserLoginRepositoryImpl implements UserLoginRepository {
         return Future.error(const UnknownException());
       },
     );
+  }
+
+  @override
+  Future<void> verify(UserVerifyModel model) {
+    return api
+        .verify(model.toRequest())
+        .then((value) => Future.value())
+        .onError(
+          (error, stackTrace) => null,
+        );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:yamstack/data/repository/user/login/model/user_join_model.dart';
+import 'package:yamstack/data/repository/user/login/model/user_verify_model.dart';
 
 abstract class UserLoginRepository {
   Future<void> checkEmail(String email);
@@ -6,4 +7,6 @@ abstract class UserLoginRepository {
   Future<String> checkName(String name);
 
   Future<void> join(UserJoinModel model);
+
+  Future<void> verify(UserVerifyModel model);
 }

@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:test/test.dart';
 import 'package:yamstack/app/app_binding.dart';
 import 'package:yamstack/data/exception/defined_exceptions.dart';
-import 'package:yamstack/data/remote/api/user/login/request/user_identify_request.dart';
 import 'package:yamstack/data/remote/api/user/login/request/user_join_request.dart';
 import 'package:yamstack/data/remote/api/user/login/request/user_sign_request.dart';
+import 'package:yamstack/data/remote/api/user/login/request/user_verify_request.dart';
 import 'package:yamstack/data/remote/api/user/login/response/user_token_response.dart';
 import 'package:yamstack/data/remote/api/user/login/user_login_api.dart';
 import 'package:yamstack/data/remote/response/base_single_response.dart';
@@ -101,14 +101,14 @@ void main() {
 
   test('본인인증 실패', () async {
     /* given */
-    final request = UserIdentifyRequest(
+    final request = UserVerifyRequest(
       email: 'sdc01194@gmail.com',
       authCode: '355161',
     );
 
     try {
       /* when */
-      await api.identify(request);
+      await api.verify(request);
     } on DioError catch (e) {
       /* then */
       expect(
