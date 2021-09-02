@@ -5,25 +5,17 @@ class VerifyForm {
 
   final String email;
 
-  String? _authCode;
-
-  String get authCode => _authCode ?? '';
+  String? authCode;
 
   String? authCodeError;
 
-  set authCode(String? value) {
-    _authCode = value;
-  }
-
   void validateInput() {
     assert(
-      _authCode?.isNotEmpty == true && _authCode!.length == 6,
+      authCode != null && authCode!.length == 6,
       '* 인증번호 6자리를 입력해주세요.',
     );
   }
 
-  UserVerifyModel toModel() => UserVerifyModel(
-        email: email,
-        authCode: authCode,
-      );
+  UserVerifyModel toModel() =>
+      UserVerifyModel(email: email, authCode: authCode!);
 }

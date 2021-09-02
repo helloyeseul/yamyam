@@ -27,10 +27,7 @@ class VerifyController extends GetxController {
     super.onInit();
     debounce(
       _inputDebounce,
-      (callback) {
-        print(callback);
-        _verifyCode();
-      },
+      (value) => _processVerifyAuthCode(),
       time: const Duration(milliseconds: 200),
     );
   }
@@ -49,7 +46,7 @@ class VerifyController extends GetxController {
         .resendAuthCode(verifyForm.email)
         .then((value) => null)
         .onError((error, stackTrace) {
-      if (error is VerifyFailException) {
+      if (error is VerifyAuthCodeFailException) {
         SingleMessageDialog(error.message).show();
       }
     });
@@ -59,26 +56,25 @@ class VerifyController extends GetxController {
     Get.offNamed(WelcomeScreen.route);
   }
 
-  void _verifyCode() {
+  void _updateFormErrorMessage(String? message) {
+    _verifyForm.update((form) {
+      form!.authCodeError = message;
+    });
+  }
+
+  void _processVerifyAuthCode() {
     try {
       verifyForm.validateInput();
-      _repository.verify(verifyForm.toModel()).then(
-        (value) {
-          _verifyForm.update((form) {
-            form!.authCodeError = value;
-          });
-        },
-      ).onError((error, stackTrace) {
-        if (error is VerifyFailException) {
-          _verifyForm.update((form) {
-            form!.authCodeError = error.message;
-          });
+      _repository
+          .verify(verifyForm.toModel())
+          .then(_updateFormErrorMessage)
+          .onError((error, stackTrace) {
+        if (error is VerifyAuthCodeFailException) {
+          _updateFormErrorMessage(error.message);
         }
       });
     } on AssertionError catch (e) {
-      _verifyForm.update((form) {
-        form!.authCodeError = e.message.toString();
-      });
+      _updateFormErrorMessage(e.message.toString());
     }
   }
 }

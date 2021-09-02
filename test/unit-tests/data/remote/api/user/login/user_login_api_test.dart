@@ -113,7 +113,7 @@ void main() {
       /* then */
       expect(
         e.error,
-        isA<VerifyFailException>(),
+        isA<VerifyAuthCodeFailException>(),
       );
     }
   });

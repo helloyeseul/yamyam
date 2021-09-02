@@ -149,7 +149,7 @@ void main() {
       when(api.verify(any)).thenThrow(
         DioError(
           requestOptions: RequestOptions(path: ''),
-          error: const VerifyFailException(),
+          error: const VerifyAuthCodeFailException(),
         ),
       );
 
