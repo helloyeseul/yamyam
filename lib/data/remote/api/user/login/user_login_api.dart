@@ -40,4 +40,10 @@ abstract class UserLoginApi {
   Future<BaseSingleResponse<UserTokenResponse>> sign(
     @Body() UserSignRequest request,
   );
+
+  /// 인증번호 재전송
+  @POST('/login/authCode')
+  Future<BaseSingleResponse<EmptyResponse>> resendAuthCode(
+    @Field('email') String email,
+  );
 }

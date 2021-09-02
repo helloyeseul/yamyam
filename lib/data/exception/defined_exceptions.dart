@@ -19,7 +19,7 @@ class DuplicatedNameException extends DefinedException {
 }
 
 class VerifyFailException extends DefinedException {
-  const VerifyFailException() : super('인증번호를 다시 확인해주세요.');
+  const VerifyFailException() : super('* 인증번호가 틀렸습니다.');
 }
 
 class VerifyRequiredException extends DefinedException {

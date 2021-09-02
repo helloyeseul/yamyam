@@ -3,11 +3,14 @@ import 'package:get/get.dart';
 import 'package:yamstack/resource/color_resource.dart';
 import 'package:yamstack/view/common/components/text/noto_sans_text.dart';
 
-class JoinNameCheckDialog extends StatelessWidget {
-  const JoinNameCheckDialog({Key? key, required this.message})
-      : super(key: key);
+class SingleMessageDialog extends StatelessWidget {
+  const SingleMessageDialog(this.message, {Key? key}) : super(key: key);
 
   final String message;
+
+  void show() {
+    Get.dialog(this);
+  }
 
   @override
   Widget build(BuildContext context) {

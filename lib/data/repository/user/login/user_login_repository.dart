@@ -8,5 +8,7 @@ abstract class UserLoginRepository {
 
   Future<void> join(UserJoinModel model);
 
-  Future<void> verify(UserVerifyModel model);
+  Future<String> verify(UserVerifyModel model);
+
+  Future<void> resendAuthCode(String email);
 }

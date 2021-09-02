@@ -57,7 +57,7 @@ class JoinController extends GetxController {
 
   void onPressAgreeWithTerms(bool? agree) {
     _joinForm.update((form) {
-      joinForm.isAgreeWithTerms = agree!;
+      form!.isAgreeWithTerms = agree!;
     });
   }
 
@@ -72,31 +72,27 @@ class JoinController extends GetxController {
       }).onError(
         (error, stackTrace) {
           if (error is FormatException) {
-            _showSingleMessageDialog(error.message);
+            SingleMessageDialog(error.message).show();
           }
         },
       );
     } on AssertionError catch (e) {
-      _showSingleMessageDialog(e.message.toString());
+      SingleMessageDialog(e.message.toString()).show();
     }
   }
 
   void _observeNameCheck(final String name) {
     repository.checkName(name).then((message) {
       joinForm.isNameValidated = true;
-      _showSingleMessageDialog(message);
+      SingleMessageDialog(message).show();
     }).onError(
       (error, stackTrace) {
         joinForm.isNameValidated = false;
         if (error is DuplicatedNameException) {
-          _showSingleMessageDialog(error.message);
+          SingleMessageDialog(error.message).show();
         }
       },
     );
-  }
-
-  void _showSingleMessageDialog(final String message) {
-    Get.dialog(JoinNameCheckDialog(message: message));
   }
 
   @override

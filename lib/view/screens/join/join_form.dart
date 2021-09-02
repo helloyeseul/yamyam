@@ -73,11 +73,9 @@ class JoinForm {
     assert(isAgreeWithTerms, '약관에 동의해주세요.');
   }
 
-  UserJoinModel toModel() {
-    return UserJoinModel(
-      email: _email!,
-      name: _name!,
-      password: _password!,
-    );
-  }
+  UserJoinModel toModel() => UserJoinModel(
+        email: _email!,
+        name: _name!,
+        password: _password!,
+      );
 }

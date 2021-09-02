@@ -41,19 +41,31 @@ class UserLoginRepositoryImpl implements UserLoginRepository {
   }
 
   @override
-  Future<void> verify(UserVerifyModel model) {
-    return api
-        .verify(model.toRequest())
-        .then((response) => saveTokens(response.data))
-        .onError(
-      (error, stackTrace) {
-        if (error is DioError) {
-          return Future.error(error.error as DefinedException);
-        }
-        return Future.error(const UnknownException());
-      },
-    );
-  }
+  Future<String> verify(UserVerifyModel model) => api
+          .verify(model.toRequest())
+          .then(
+            (response) => saveTokens(response.data)
+                .then((value) => Future.value('* 인증되었습니다!')),
+          )
+          .onError(
+        (error, stackTrace) {
+          if (error is DioError) {
+            return Future.error(error.error as DefinedException);
+          }
+          return Future.error(error ?? const UnknownException());
+        },
+      );
+
+  @override
+  Future<void> resendAuthCode(String email) =>
+      api.resendAuthCode(email).then((value) => Future.value()).onError(
+        (error, stackTrace) {
+          if (error is DioError) {
+            return Future.error(error.error as DefinedException);
+          }
+          return Future.error(error ?? const UnknownException());
+        },
+      );
 
   @visibleForTesting
   Future<void> saveTokens(UserTokenResponse response) async {

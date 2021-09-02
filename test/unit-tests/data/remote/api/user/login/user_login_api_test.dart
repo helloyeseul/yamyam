@@ -164,4 +164,19 @@ void main() {
       }
     });
   });
+
+  test('인증번호 재전송', () {
+    /* given */
+    const email = 'yslee.201802@gmail.com';
+
+    /* when */
+    final response = api.resendAuthCode(email);
+
+    /* then */
+    // 타입 체크
+    expect(
+      response,
+      completion(isA<BaseSingleResponse<EmptyResponse>>()),
+    );
+  });
 }
