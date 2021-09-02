@@ -18,8 +18,8 @@ class DuplicatedNameException extends DefinedException {
   const DuplicatedNameException() : super('이미 사용중인 닉네임입니다.');
 }
 
-class IdentifyFailException extends DefinedException {
-  const IdentifyFailException() : super('인증번호를 다시 확인해주세요.');
+class VerifyFailException extends DefinedException {
+  const VerifyFailException() : super('인증번호를 다시 확인해주세요.');
 }
 
 class VerifyRequiredException extends DefinedException {
