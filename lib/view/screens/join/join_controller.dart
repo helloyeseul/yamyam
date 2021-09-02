@@ -4,7 +4,7 @@ import 'package:yamstack/data/exception/defined_exceptions.dart';
 import 'package:yamstack/data/repository/user/login/user_login_repository.dart';
 import 'package:yamstack/view/screens/join/components/join_name_check_dialog.dart';
 import 'package:yamstack/view/screens/join/join_form.dart';
-import 'package:yamstack/view/screens/validate/validate_screen.dart';
+import 'package:yamstack/view/screens/verify/verify_screen.dart';
 
 enum Field { email, name, password, passwordRepeat }
 
@@ -65,7 +65,7 @@ class JoinController extends GetxController {
     try {
       joinForm.validateInput();
       repository.join(joinForm.toModel()).then((_) {
-        Get.offNamed(ValidateScreen.route);
+        Get.offNamed(VerifyScreen.route);
       }).onError(
         (error, stackTrace) {
           if (error is FormatException) {
