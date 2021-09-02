@@ -25,6 +25,8 @@ class JoinForm {
 
   String? get name => _name;
 
+  String? get email => _email;
+
   set email(String? value) {
     if (value != null && value.isNotEmpty && value.isNotEmail) {
       emailFormatError = _emailFormatErrorMessage;

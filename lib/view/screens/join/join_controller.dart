@@ -65,7 +65,10 @@ class JoinController extends GetxController {
     try {
       joinForm.validateInput();
       repository.join(joinForm.toModel()).then((_) {
-        Get.offNamed(VerifyScreen.route);
+        Get.offNamed(
+          VerifyScreen.route,
+          arguments: {VerifyScreen.ARGUMENT_KEY_EMAIL: joinForm.email},
+        );
       }).onError(
         (error, stackTrace) {
           if (error is FormatException) {

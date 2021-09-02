@@ -19,7 +19,11 @@ class JoinScreen extends GetView<JoinController> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text('회원가입'),
+          title: NotoSansText(
+            '회원가입',
+            size: 20,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         body: SingleChildScrollView(
           child: Column(
