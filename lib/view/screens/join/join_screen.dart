@@ -19,7 +19,11 @@ class JoinScreen extends GetView<JoinController> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text('회원가입'),
+          title: NotoSansText(
+            '회원가입',
+            size: 20,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -43,6 +47,8 @@ class JoinScreen extends GetView<JoinController> {
                         error: controller.joinForm.emailFormatError,
                         controller: controller.textControllers[Field.email]!,
                         onTextChanged: controller.onEmailChanged,
+                        textInputAction: TextInputAction.next,
+                        textInputType: TextInputType.emailAddress,
                       ),
                     ),
                     const SizedBox(height: 24),
@@ -55,6 +61,8 @@ class JoinScreen extends GetView<JoinController> {
                             error: controller.joinForm.nameFormatError,
                             controller: controller.textControllers[Field.name]!,
                             onTextChanged: controller.onNameChanged,
+                            textInputAction: TextInputAction.next,
+                            textInputType: TextInputType.name,
                           ),
                         ),
                         Positioned(
@@ -81,6 +89,8 @@ class JoinScreen extends GetView<JoinController> {
                         error: controller.joinForm.passwordFormatError,
                         controller: controller.textControllers[Field.password]!,
                         onTextChanged: controller.onPasswordChanged,
+                        textInputAction: TextInputAction.next,
+                        textInputType: TextInputType.visiblePassword,
                       ),
                     ),
                     const SizedBox(height: 24),
@@ -92,6 +102,8 @@ class JoinScreen extends GetView<JoinController> {
                         controller:
                             controller.textControllers[Field.passwordRepeat]!,
                         onTextChanged: controller.onPasswordRepeatChanged,
+                        textInputAction: TextInputAction.done,
+                        textInputType: TextInputType.visiblePassword,
                       ),
                     ),
                     const SizedBox(height: 24),

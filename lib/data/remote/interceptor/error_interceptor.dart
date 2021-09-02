@@ -31,7 +31,7 @@ final Map<ErrorTuple, Mapper> exceptionMapper = <ErrorTuple, Mapper>{
   const ErrorTuple('DUPLICATED_ACCOUNT', 'DUPLICATED_ACCOUNT', 400): () =>
       const DuplicatedAccountException(),
   const ErrorTuple('IDENTIFY_FAIL', 'IDENTIFY_FAIL', 400): () =>
-      const IdentifyFailException(),
+      const VerifyAuthCodeFailException(),
   const ErrorTuple('LOGIN_FAILED.', 'AUTH_002', 401): () =>
       const LoginFailException(),
 };

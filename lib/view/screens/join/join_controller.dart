@@ -4,7 +4,7 @@ import 'package:yamstack/data/exception/defined_exceptions.dart';
 import 'package:yamstack/data/repository/user/login/user_login_repository.dart';
 import 'package:yamstack/view/screens/join/components/join_name_check_dialog.dart';
 import 'package:yamstack/view/screens/join/join_form.dart';
-import 'package:yamstack/view/screens/validate/validate_screen.dart';
+import 'package:yamstack/view/screens/verify/verify_screen.dart';
 
 enum Field { email, name, password, passwordRepeat }
 
@@ -57,7 +57,7 @@ class JoinController extends GetxController {
 
   void onPressAgreeWithTerms(bool? agree) {
     _joinForm.update((form) {
-      joinForm.isAgreeWithTerms = agree!;
+      form!.isAgreeWithTerms = agree!;
     });
   }
 
@@ -65,35 +65,34 @@ class JoinController extends GetxController {
     try {
       joinForm.validateInput();
       repository.join(joinForm.toModel()).then((_) {
-        Get.offNamed(ValidateScreen.route);
+        Get.offNamed(
+          VerifyScreen.route,
+          arguments: {VerifyScreen.ARGUMENT_KEY_EMAIL: joinForm.email},
+        );
       }).onError(
         (error, stackTrace) {
           if (error is FormatException) {
-            _showSingleMessageDialog(error.message);
+            SingleMessageDialog(error.message).show();
           }
         },
       );
     } on AssertionError catch (e) {
-      _showSingleMessageDialog(e.message.toString());
+      SingleMessageDialog(e.message.toString()).show();
     }
   }
 
   void _observeNameCheck(final String name) {
     repository.checkName(name).then((message) {
       joinForm.isNameValidated = true;
-      _showSingleMessageDialog(message);
+      SingleMessageDialog(message).show();
     }).onError(
       (error, stackTrace) {
         joinForm.isNameValidated = false;
         if (error is DuplicatedNameException) {
-          _showSingleMessageDialog(error.message);
+          SingleMessageDialog(error.message).show();
         }
       },
     );
-  }
-
-  void _showSingleMessageDialog(final String message) {
-    Get.dialog(JoinNameCheckDialog(message: message));
   }
 
   @override

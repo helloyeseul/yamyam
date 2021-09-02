@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
-import 'package:yamstack/data/remote/api/user/login/request/user_identify_request.dart';
 import 'package:yamstack/data/remote/api/user/login/request/user_join_request.dart';
 import 'package:yamstack/data/remote/api/user/login/request/user_sign_request.dart';
+import 'package:yamstack/data/remote/api/user/login/request/user_verify_request.dart';
 import 'package:yamstack/data/remote/api/user/login/response/user_token_response.dart';
 import 'package:yamstack/data/remote/response/base_single_response.dart';
 import 'package:yamstack/data/remote/response/empty_response.dart';
@@ -31,13 +31,19 @@ abstract class UserLoginApi {
 
   /// 본인 인증
   @POST('/login/identify')
-  Future<BaseSingleResponse<UserTokenResponse>> identify(
-    @Body() UserIdentifyRequest request,
+  Future<BaseSingleResponse<UserTokenResponse>> verify(
+    @Body() UserVerifyRequest request,
   );
 
   /// 로그인
   @POST('/login/sign')
   Future<BaseSingleResponse<UserTokenResponse>> sign(
     @Body() UserSignRequest request,
+  );
+
+  /// 인증번호 재전송
+  @POST('/login/authCode')
+  Future<BaseSingleResponse<EmptyResponse>> resendAuthCode(
+    @Field('email') String email,
   );
 }

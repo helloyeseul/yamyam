@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:yamstack/resource/color_resource.dart';
 import 'package:yamstack/view/common/components/text/fontstyle/noto_sans.dart';
 import 'package:yamstack/view/common/components/text/noto_sans_text.dart';
@@ -13,6 +14,8 @@ class JoinFormComponent extends StatelessWidget {
     required this.controller,
     required this.onTextChanged,
     this.error,
+    this.textInputAction,
+    this.textInputType,
   }) : super(key: key);
 
   final String label;
@@ -20,6 +23,8 @@ class JoinFormComponent extends StatelessWidget {
   final String? error;
   final TextEditingController controller;
   final void Function(String) onTextChanged;
+  final TextInputAction? textInputAction;
+  final TextInputType? textInputType;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +46,8 @@ class JoinFormComponent extends StatelessWidget {
           child: NotoSansText(label, size: 16),
         ),
         TextField(
+          textInputAction: textInputAction,
+          keyboardType: textInputType,
           controller: controller,
           style: NotoSans.size(16, color: ColorResource.black_0xff202020),
           cursorColor: ColorResource.grey_0xff959595,

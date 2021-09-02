@@ -1,10 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'user_identify_request.g.dart';
+part 'user_verify_request.g.dart';
 
-@JsonSerializable(createFactory: false)
-class UserIdentifyRequest {
-  UserIdentifyRequest({
+@JsonSerializable(explicitToJson: true, createFactory: false)
+class UserVerifyRequest {
+  UserVerifyRequest({
     required this.email,
     required this.authCode,
   });
@@ -15,5 +15,5 @@ class UserIdentifyRequest {
   @JsonKey(name: 'authCode')
   final String authCode;
 
-  Map<String, dynamic> toJson() => _$UserIdentifyRequestToJson(this);
+  Map<String, dynamic> toJson() => _$UserVerifyRequestToJson(this);
 }

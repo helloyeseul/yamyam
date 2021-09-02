@@ -25,6 +25,8 @@ class JoinForm {
 
   String? get name => _name;
 
+  String? get email => _email;
+
   set email(String? value) {
     if (value != null && value.isNotEmpty && value.isNotEmail) {
       emailFormatError = _emailFormatErrorMessage;
@@ -71,11 +73,9 @@ class JoinForm {
     assert(isAgreeWithTerms, '약관에 동의해주세요.');
   }
 
-  UserJoinModel toModel() {
-    return UserJoinModel(
-      email: _email!,
-      name: _name!,
-      password: _password!,
-    );
-  }
+  UserJoinModel toModel() => UserJoinModel(
+        email: _email!,
+        name: _name!,
+        password: _password!,
+      );
 }

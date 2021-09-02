@@ -1,8 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yamstack/data/exception/defined_exceptions.dart';
+import 'package:yamstack/data/remote/api/user/login/response/user_token_response.dart';
 import 'package:yamstack/data/remote/api/user/login/user_login_api.dart';
 import 'package:yamstack/data/repository/user/login/model/user_join_model.dart';
+import 'package:yamstack/data/repository/user/login/model/user_verify_model.dart';
 import 'package:yamstack/data/repository/user/login/user_login_repository.dart';
+import 'package:yamstack/data/shared/preference_constants.dart';
 
 class UserLoginRepositoryImpl implements UserLoginRepository {
   UserLoginRepositoryImpl(this.api);
@@ -33,5 +38,40 @@ class UserLoginRepositoryImpl implements UserLoginRepository {
         return Future.error(const UnknownException());
       },
     );
+  }
+
+  @override
+  Future<String> verify(UserVerifyModel model) => api
+          .verify(model.toRequest())
+          .then(
+            (response) => saveTokens(response.data)
+                .then((value) => Future.value('* 인증되었습니다!')),
+          )
+          .onError(
+        (error, stackTrace) {
+          if (error is DioError) {
+            return Future.error(error.error as DefinedException);
+          }
+          return Future.error(error ?? const UnknownException());
+        },
+      );
+
+  @override
+  Future<void> resendAuthCode(String email) =>
+      api.resendAuthCode(email).then((value) => Future.value()).onError(
+        (error, stackTrace) {
+          if (error is DioError) {
+            return Future.error(error.error as DefinedException);
+          }
+          return Future.error(error ?? const UnknownException());
+        },
+      );
+
+  @visibleForTesting
+  Future<void> saveTokens(UserTokenResponse response) async {
+    final pref = await SharedPreferences.getInstance();
+    await pref.setString(PREF_KEY_REFRESH_TOKEN, response.refreshToken!);
+    await pref.setString(PREF_KEY_ACCESS_TOKEN, response.accessToken!);
+    return Future.value();
   }
 }
