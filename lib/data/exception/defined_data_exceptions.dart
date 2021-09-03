@@ -7,7 +7,7 @@ class UnknownException extends DefinedDataException {
 }
 
 class DuplicatedAccountException extends DefinedDataException {
-  const DuplicatedAccountException() : super('이미 사용중인 아이디 또는 닉네임입니다.');
+  const DuplicatedAccountException() : super('이미 사용중인 아이디입니다.');
 }
 
 class DuplicatedEmailException extends DefinedDataException {

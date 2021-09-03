@@ -18,14 +18,23 @@ class UserLoginRepositoryImpl implements UserLoginRepository {
 
   @override
   Future<void> checkEmail(String email) async {
-    final response = await api.emailCheck(email);
-    if (response.message != 'true') throw const DuplicatedEmailException();
+    try {
+      final response = await api.emailCheck(email);
+      if (response.message != 'true') throw const DuplicatedEmailException();
+    } on DioError catch (e) {
+      throw e.error as DefinedDataException;
+    }
   }
 
   @override
   Future<String> checkName(String name) async {
-    final response = await api.nameCheck(name);
-    if (response.message != 'true') throw const DuplicatedNameException();
+    try {
+      final response = await api.nameCheck(name);
+      if (response.message != 'true') throw const DuplicatedNameException();
+    } on DioError catch (e) {
+      throw e.error as DefinedDataException;
+    }
+
     return '사용하실 수 있는 닉네임입니다.';
   }
 
@@ -43,20 +52,22 @@ class UserLoginRepositoryImpl implements UserLoginRepository {
     try {
       final response = await api.verify(model.toRequest());
       await saveTokens(response.data);
-      return true;
     } on DioError catch (e) {
       throw e.error as DefinedDataException;
     }
+
+    return true;
   }
 
   @override
   Future<String> resendAuthCode(String email) async {
     try {
       await api.resendAuthCode(email);
-      return '등록된 이메일로 인증번호가 재전송되었습니다.';
     } on DioError catch (e) {
       throw e.error as DefinedDataException;
     }
+
+    return '등록된 이메일로 인증번호가 재전송되었습니다.';
   }
 
   @override
