@@ -17,75 +17,70 @@ class UserLoginRepositoryImpl implements UserLoginRepository {
   final UserLoginApi api;
 
   @override
-  Future<void> checkEmail(String email) => api.emailCheck(email).then(
-        (value) => value.message == 'true'
-            ? Future.value()
-            : Future.error(const DuplicatedEmailException()),
-      );
-
-  @override
-  Future<String> checkName(String name) => api.nameCheck(name).then(
-        (value) => value.message == 'true'
-            ? Future.value('사용하실 수 있는 닉네임입니다.')
-            : Future.error(const DuplicatedNameException()),
-      );
-
-  @override
-  Future<void> join(UserJoinModel model) async {
-    return api.join(model.toRequest()).then((value) => Future.value()).onError(
-      (error, stackTrace) {
-        if (error is DioError) {
-          return Future.error(error.error as DefinedException);
-        }
-        return Future.error(const UnknownException());
-      },
-    );
+  Future<void> checkEmail(String email) async {
+    final response = await api.emailCheck(email);
+    if (response.message != 'true') throw const DuplicatedEmailException();
   }
 
   @override
-  Future<bool> verify(UserVerifyModel model) => api
-          .verify(model.toRequest())
-          .then(
-            (response) =>
-                saveTokens(response.data).then((_) => Future.value(true)),
-          )
-          .onError((error, stackTrace) {
-        if (error is DioError) {
-          return Future.error(error.error as DefinedException);
-        }
-        return Future.error(error ?? const UnknownException());
-      });
+  Future<String> checkName(String name) async {
+    final response = await api.nameCheck(name);
+    if (response.message != 'true') throw const DuplicatedNameException();
+    return '사용하실 수 있는 닉네임입니다.';
+  }
 
   @override
-  Future<String> resendAuthCode(String email) => api
-          .resendAuthCode(email)
-          .then((_) => Future.value('등록된 이메일로 인증번호가 재전송되었습니다.'))
-          .onError((error, stackTrace) {
-        if (error is DioError) {
-          return Future.error(error.error as DefinedException);
-        }
-        return Future.error(error ?? const UnknownException());
-      });
+  Future<void> join(UserJoinModel model) async {
+    try {
+      await api.join(model.toRequest());
+    } on DioError catch (e) {
+      throw e.error as DefinedException;
+    }
+  }
 
   @override
-  Future<void> signIn(UserSignInModel model) =>
-      api.signIn(model.toRequest()).then((value) {
-        final error = mapException(value.message, value.code, value.status);
-        return error == null ? Future.value() : Future.error(error);
-      }).onError(
-        (error, stackTrace) {
-          if (error is DioError) {
-            return Future.error(error.error as DefinedException);
-          }
-          return Future.error(error ?? const UnknownException());
-        },
+  Future<bool> verify(UserVerifyModel model) async {
+    try {
+      final response = await api.verify(model.toRequest());
+      await saveTokens(response.data);
+      return true;
+    } on DioError catch (e) {
+      throw e.error as DefinedException;
+    }
+  }
+
+  @override
+  Future<String> resendAuthCode(String email) async {
+    try {
+      await api.resendAuthCode(email);
+      return '등록된 이메일로 인증번호가 재전송되었습니다.';
+    } on DioError catch (e) {
+      throw e.error as DefinedException;
+    }
+  }
+
+  @override
+  Future<void> signIn(UserSignInModel model) async {
+    DefinedException? error;
+
+    try {
+      final response = await api.signIn(model.toRequest());
+      error = mapException(
+        response.message,
+        response.code,
+        response.status,
       );
+    } on DioError catch (e) {
+      throw e.error as DefinedException;
+    }
+
+    if (error != null) throw error;
+  }
 
   @visibleForTesting
   Future<void> saveTokens(UserTokenResponse response) async {
     final pref = await SharedPreferences.getInstance();
     await pref.setString(PREF_KEY_REFRESH_TOKEN, response.refreshToken!);
     await pref.setString(PREF_KEY_ACCESS_TOKEN, response.accessToken!);
-    return Future.value();
   }
 }
