@@ -4,12 +4,6 @@ import 'package:yamstack/data/repository/user/login/model/user_join_model.dart';
 import 'package:yamstack/extensions/string_helper.dart';
 
 class JoinForm {
-  static const String _emailFormatErrorMessage = '* 이메일 형식이 올바르지 않습니다.';
-  static const String _nameFormatError = '* 닉네임은 한글, 영어, 숫자만 가능합니다.';
-  static const String _passwordFormatError =
-      '* 비밀번호는 영문, 숫자, 특수문자를 포함하여 8~16자리로 설정해주세요.';
-  static const String _passwordRepeatError = '* 비밀번호가 일치하지 않습니다';
-
   String? _email;
   String? _name;
   String? _password;
@@ -26,6 +20,12 @@ class JoinForm {
   String? get name => _name;
 
   String? get email => _email;
+
+  bool get isFormCompleted =>
+      _email?.isNotEmpty == true &&
+      _name?.isNotEmpty == true &&
+      _password?.isNotEmpty == true &&
+      _passwordRepeat?.isNotEmpty == true;
 
   set email(String? value) {
     if (value != null && value.isNotEmpty && value.isNotEmail) {
@@ -78,4 +78,10 @@ class JoinForm {
         name: _name!,
         password: _password!,
       );
+
+  static const String _emailFormatErrorMessage = '* 이메일 형식이 올바르지 않습니다.';
+  static const String _nameFormatError = '* 닉네임은 한글, 영어, 숫자만 가능합니다.';
+  static const String _passwordFormatError =
+      '* 영문,숫자,특수문자를 포함하여 8~16자리로 설정해주세요.';
+  static const String _passwordRepeatError = '* 비밀번호가 일치하지 않습니다';
 }

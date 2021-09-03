@@ -43,11 +43,11 @@ class UserLoginRepositoryImpl implements UserLoginRepository {
   }
 
   @override
-  Future<String> verify(UserVerifyModel model) => api
+  Future<bool> verify(UserVerifyModel model) => api
           .verify(model.toRequest())
           .then(
-            (response) => saveTokens(response.data)
-                .then((_) => Future.value('* 인증되었습니다!')),
+            (response) =>
+                saveTokens(response.data).then((_) => Future.value(true)),
           )
           .onError((error, stackTrace) {
         if (error is DioError) {

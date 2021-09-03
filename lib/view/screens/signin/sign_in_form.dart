@@ -4,7 +4,7 @@ class SignInForm {
   String email = '';
   String password = '';
 
-  bool get isFormNotEmpty => email.isNotEmpty && password.isNotEmpty;
+  bool get isFormCompleted => email.isNotEmpty && password.isNotEmpty;
 
   UserSignInModel toModel() =>
       UserSignInModel(email: email, password: password);

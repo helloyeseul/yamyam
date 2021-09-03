@@ -9,6 +9,8 @@ class VerifyForm {
 
   String? authCodeError;
 
+  bool isAuthCodeVerified = false;
+
   void validateInput() {
     assert(
       authCode != null && authCode!.length == 6,

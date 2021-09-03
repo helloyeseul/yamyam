@@ -11,21 +11,23 @@ class SignInController extends GetxController {
   SignInController(this.repository);
 
   final UserLoginRepository repository;
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   final _signInForm = SignInForm().obs;
-  final _isFormNotEmpty = false.obs;
 
   SignInForm get signInForm => _signInForm.value;
 
-  bool get isFormNotEmpty => _isFormNotEmpty.isTrue;
+  final _isFormCompleted = false.obs;
+
+  bool get isFormCompleted => _isFormCompleted.isTrue;
 
   @override
   void onInit() {
     super.onInit();
     ever(_signInForm, (_) {
-      _isFormNotEmpty.value = signInForm.isFormNotEmpty;
+      _isFormCompleted.value = signInForm.isFormCompleted;
     });
   }
 

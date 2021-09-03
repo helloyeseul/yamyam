@@ -44,14 +44,14 @@ class SignInScreen extends GetView<SignInController> {
               const SizedBox(height: 56),
               Obx(
                 () => RoundButton(
-                  onPressed: controller.isFormNotEmpty
+                  onPressed: controller.isFormCompleted
                       ? controller.onSignInButtonClicked
                       : null,
                   text: '로그인',
-                  backgroundColor: controller.isFormNotEmpty
+                  backgroundColor: controller.isFormCompleted
                       ? ColorResource.yellow
                       : ColorResource.grey_0xffd9d9d9,
-                  textColor: controller.isFormNotEmpty
+                  textColor: controller.isFormCompleted
                       ? ColorResource.white
                       : ColorResource.black_0xff202020.withAlpha(20),
                 ),

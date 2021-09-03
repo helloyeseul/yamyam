@@ -102,11 +102,20 @@ class VerifyScreen extends GetView<VerifyController> {
               child: SizedBox(
                 height: 56,
                 width: 500,
-                child: RoundButton(
-                  onPressed: controller.onPressDone,
-                  text: '확인',
-                  borderRadius: 0.0,
-                  backgroundColor: ColorResource.yellow,
+                child: Obx(
+                  () => RoundButton(
+                    onPressed: controller.isVerifyCompleted
+                        ? controller.onPressDone
+                        : null,
+                    text: '확인',
+                    borderRadius: 0.0,
+                    backgroundColor: controller.isVerifyCompleted
+                        ? ColorResource.yellow
+                        : ColorResource.grey_0xffd9d9d9,
+                    textColor: controller.isVerifyCompleted
+                        ? ColorResource.white
+                        : ColorResource.black_0xff202020.withAlpha(20),
+                  ),
                 ),
               ),
             ),

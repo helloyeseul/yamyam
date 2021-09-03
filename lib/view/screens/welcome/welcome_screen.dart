@@ -13,7 +13,7 @@ class WelcomeScreen extends GetView<WelcomeController> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
+        appBar: AppBar(
           title: NotoSansText(
             '회원가입',
             size: 20,
@@ -23,11 +23,14 @@ class WelcomeScreen extends GetView<WelcomeController> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Center(
+            Expanded(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  NotoSansText('🤗', size: 35),
+                  NotoSansText('🤗', size: 32),
+                  const SizedBox(height: 16),
                   NotoSansText('완료되었습니다', size: 28),
+                  const SizedBox(height: 16),
                   NotoSansText(
                     '나만의 맛집 리스트를 작성해보세요',
                     size: 14,
@@ -38,11 +41,11 @@ class WelcomeScreen extends GetView<WelcomeController> {
             ),
             Container(
               alignment: AlignmentDirectional.bottomCenter,
-              child: const SizedBox(
+              child: SizedBox(
                 height: 56,
                 width: 500,
                 child: RoundButton(
-                  onPressed: null,
+                  onPressed: controller.onPressNext,
                   text: '첫 리스트 작성하러 가기',
                   borderRadius: 0.0,
                   backgroundColor: ColorResource.yellow,

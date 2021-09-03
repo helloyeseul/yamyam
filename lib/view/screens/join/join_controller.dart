@@ -25,6 +25,18 @@ class JoinController extends GetxController {
 
   JoinForm get joinForm => _joinForm.value;
 
+  final _isFormCompleted = false.obs;
+
+  bool get isFormCompleted => _isFormCompleted.isTrue;
+
+  @override
+  void onInit() {
+    super.onInit();
+    ever(_joinForm, (_) {
+      _isFormCompleted.value = joinForm.isFormCompleted;
+    });
+  }
+
   void onEmailChanged(String value) {
     _joinForm.update((form) {
       form!.email = value;
