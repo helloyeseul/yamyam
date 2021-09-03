@@ -48,15 +48,13 @@ class UserLoginRepositoryImpl implements UserLoginRepository {
   }
 
   @override
-  Future<bool> verify(UserVerifyModel model) async {
+  Future<void> verify(UserVerifyModel model) async {
     try {
       final response = await api.verify(model.toRequest());
       await saveTokens(response.data);
     } on DioError catch (e) {
       throw e.error as DefinedDataException;
     }
-
-    return true;
   }
 
   @override
