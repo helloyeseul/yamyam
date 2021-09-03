@@ -9,8 +9,6 @@ class UserVerifyModel {
   final String email;
   final String authCode;
 
-  UserVerifyRequest toRequest() => UserVerifyRequest(
-        email: email,
-        authCode: authCode,
-      );
+  UserVerifyRequest toRequest() =>
+      UserVerifyRequest(email: email, authCode: authCode);
 }

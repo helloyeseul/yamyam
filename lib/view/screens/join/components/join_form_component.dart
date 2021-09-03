@@ -57,6 +57,7 @@ class JoinFormComponent extends StatelessWidget {
             enabledBorder: _border,
             focusedBorder: _focusedBorder,
             errorBorder: _errorBorder,
+            focusedErrorBorder: _errorBorder,
             errorStyle: errorStyle,
             errorText: error,
             hintText: hint,

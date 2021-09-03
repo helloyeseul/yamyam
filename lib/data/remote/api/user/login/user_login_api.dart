@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 import 'package:yamstack/data/remote/api/user/login/request/user_join_request.dart';
-import 'package:yamstack/data/remote/api/user/login/request/user_sign_request.dart';
+import 'package:yamstack/data/remote/api/user/login/request/user_sign_in_request.dart';
 import 'package:yamstack/data/remote/api/user/login/request/user_verify_request.dart';
 import 'package:yamstack/data/remote/api/user/login/response/user_token_response.dart';
 import 'package:yamstack/data/remote/response/base_single_response.dart';
@@ -37,8 +37,8 @@ abstract class UserLoginApi {
 
   /// 로그인
   @POST('/login/sign')
-  Future<BaseSingleResponse<UserTokenResponse>> sign(
-    @Body() UserSignRequest request,
+  Future<BaseSingleResponse<UserTokenResponse>> signIn(
+    @Body() UserSignInRequest request,
   );
 
   /// 인증번호 재전송

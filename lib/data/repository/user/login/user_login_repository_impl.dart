@@ -4,7 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:yamstack/data/exception/defined_exceptions.dart';
 import 'package:yamstack/data/remote/api/user/login/response/user_token_response.dart';
 import 'package:yamstack/data/remote/api/user/login/user_login_api.dart';
+import 'package:yamstack/data/remote/interceptor/error_interceptor.dart';
 import 'package:yamstack/data/repository/user/login/model/user_join_model.dart';
+import 'package:yamstack/data/repository/user/login/model/user_sign_in_model.dart';
 import 'package:yamstack/data/repository/user/login/model/user_verify_model.dart';
 import 'package:yamstack/data/repository/user/login/user_login_repository.dart';
 import 'package:yamstack/data/shared/preference_constants.dart';
@@ -45,20 +47,32 @@ class UserLoginRepositoryImpl implements UserLoginRepository {
           .verify(model.toRequest())
           .then(
             (response) => saveTokens(response.data)
-                .then((value) => Future.value('* 인증되었습니다!')),
+                .then((_) => Future.value('* 인증되었습니다!')),
           )
-          .onError(
-        (error, stackTrace) {
-          if (error is DioError) {
-            return Future.error(error.error as DefinedException);
-          }
-          return Future.error(error ?? const UnknownException());
-        },
-      );
+          .onError((error, stackTrace) {
+        if (error is DioError) {
+          return Future.error(error.error as DefinedException);
+        }
+        return Future.error(error ?? const UnknownException());
+      });
 
   @override
-  Future<void> resendAuthCode(String email) =>
-      api.resendAuthCode(email).then((value) => Future.value()).onError(
+  Future<String> resendAuthCode(String email) => api
+          .resendAuthCode(email)
+          .then((_) => Future.value('등록된 이메일로 인증번호가 재전송되었습니다.'))
+          .onError((error, stackTrace) {
+        if (error is DioError) {
+          return Future.error(error.error as DefinedException);
+        }
+        return Future.error(error ?? const UnknownException());
+      });
+
+  @override
+  Future<void> signIn(UserSignInModel model) =>
+      api.signIn(model.toRequest()).then((value) {
+        final error = mapException(value.message, value.code, value.status);
+        return error == null ? Future.value() : Future.error(error);
+      }).onError(
         (error, stackTrace) {
           if (error is DioError) {
             return Future.error(error.error as DefinedException);

@@ -9,12 +9,16 @@ class SignInFormComponent extends StatelessWidget {
     required this.hint,
     required this.controller,
     required this.onTextChanged,
+    this.textInputAction,
+    this.textInputType,
   }) : super(key: key);
 
   final String label;
   final String hint;
   final TextEditingController controller;
   final void Function(String) onTextChanged;
+  final TextInputAction? textInputAction;
+  final TextInputType? textInputType;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +29,8 @@ class SignInFormComponent extends StatelessWidget {
     );
 
     return TextField(
+      textInputAction: textInputAction,
+      keyboardType: textInputType,
       controller: controller,
       style: NotoSans.size(16, color: ColorResource.black_0xff202020),
       cursorColor: ColorResource.grey_0xff959595,

@@ -44,7 +44,7 @@ class VerifyController extends GetxController {
   void onPressResendAuthCode() {
     _repository
         .resendAuthCode(verifyForm.email)
-        .then((value) => null)
+        .then((message) => SingleMessageDialog(message).show())
         .onError((error, stackTrace) {
       if (error is VerifyAuthCodeFailException) {
         SingleMessageDialog(error.message).show();

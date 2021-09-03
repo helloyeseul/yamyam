@@ -25,29 +25,33 @@ class SignInScreen extends GetView<SignInController> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SignInFormComponent(
-                label: 'Email',
+                label: '이메일',
                 hint: '이메일을 입력하세요.',
-                controller: controller.emailTextController,
+                controller: controller.emailController,
                 onTextChanged: controller.onEmailChanged,
+                textInputType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.next,
               ),
               const SizedBox(height: 24),
               SignInFormComponent(
-                label: 'Password',
+                label: '비밀번호',
                 hint: '비밀번호를 입력하세요.',
-                controller: controller.passwordTextController,
+                controller: controller.passwordController,
                 onTextChanged: controller.onPasswordChanged,
+                textInputType: TextInputType.visiblePassword,
+                textInputAction: TextInputAction.done,
               ),
               const SizedBox(height: 56),
               Obx(
                 () => RoundButton(
-                  onPressed: controller.isAllFieldNotEmpty
+                  onPressed: controller.isFormNotEmpty
                       ? controller.onSignInButtonClicked
                       : null,
                   text: '로그인',
-                  backgroundColor: controller.isAllFieldNotEmpty
+                  backgroundColor: controller.isFormNotEmpty
                       ? ColorResource.yellow
                       : ColorResource.grey_0xffd9d9d9,
-                  textColor: controller.isAllFieldNotEmpty
+                  textColor: controller.isFormNotEmpty
                       ? ColorResource.white
                       : ColorResource.black_0xff202020.withAlpha(20),
                 ),
