@@ -166,11 +166,20 @@ class JoinScreen extends GetView<JoinController> {
                 child: SizedBox(
                   height: 56,
                   width: 500,
-                  child: RoundButton(
-                    onPressed: controller.onPressJoin,
-                    text: '회원가입',
-                    borderRadius: 0.0,
-                    backgroundColor: ColorResource.yellow,
+                  child: Obx(
+                    () => RoundButton(
+                      onPressed: controller.isFormCompleted
+                          ? controller.onPressJoin
+                          : null,
+                      text: '회원가입',
+                      borderRadius: 0.0,
+                      backgroundColor: controller.isFormCompleted
+                          ? ColorResource.yellow
+                          : ColorResource.grey_0xffd9d9d9,
+                      textColor: controller.isFormCompleted
+                          ? ColorResource.white
+                          : ColorResource.black_0xff202020.withAlpha(20),
+                    ),
                   ),
                 ),
               ),

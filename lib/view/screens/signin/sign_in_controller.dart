@@ -1,30 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yamstack/view/screens/signin/sign_in_user_model.dart';
+import 'package:yamstack/data/exception/defined_exceptions.dart';
+import 'package:yamstack/data/repository/user/login/user_login_repository.dart';
+import 'package:yamstack/view/screens/join/components/join_name_check_dialog.dart';
+import 'package:yamstack/view/screens/main/main_screen.dart';
+import 'package:yamstack/view/screens/signin/sign_in_form.dart';
+import 'package:yamstack/view/screens/verify/verify_screen.dart';
 
 class SignInController extends GetxController {
-  final emailTextController = TextEditingController();
-  final passwordTextController = TextEditingController();
+  SignInController(this.repository);
 
-  final _signInUser = SignInUserModel().obs;
+  final UserLoginRepository repository;
 
-  SignInUserModel get signInUser => _signInUser.value;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  final _signInForm = SignInForm().obs;
+
+  SignInForm get signInForm => _signInForm.value;
+
+  final _isFormCompleted = false.obs;
+
+  bool get isFormCompleted => _isFormCompleted.isTrue;
+
+  @override
+  void onInit() {
+    super.onInit();
+    ever(_signInForm, (_) {
+      _isFormCompleted.value = signInForm.isFormCompleted;
+    });
+  }
 
   void onEmailChanged(String email) {
-    _signInUser.update((user) {
-      (user ??= SignInUserModel()).email = email;
+    _signInForm.update((form) {
+      form!.email = email;
     });
   }
 
   void onPasswordChanged(String password) {
-    _signInUser.update((user) {
-      (user ??= SignInUserModel()).password = password;
+    _signInForm.update((form) {
+      form!.password = password;
     });
   }
 
-  void onSignInButtonClicked() {}
-
-  bool get isAllFieldNotEmpty =>
-      _signInUser.value.email.isNotEmpty &&
-      _signInUser.value.password.isNotEmpty;
+  void onSignInButtonClicked() {
+    repository
+        .signIn(signInForm.toModel())
+        .then((value) => Get.offAllNamed(MainScreen.route))
+        .onError((error, stackTrace) {
+      if (error is VerifyRequiredException) {
+        Get.toNamed(
+          VerifyScreen.route,
+          arguments: {VerifyScreen.ARGUMENT_KEY_EMAIL: signInForm.email},
+        );
+      } else if (error is LoginFailException) {
+        SingleMessageDialog(error.message).show();
+      }
+    });
+  }
 }

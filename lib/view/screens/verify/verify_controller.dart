@@ -14,13 +14,17 @@ class VerifyController extends GetxController {
 
   final authCodeController = TextEditingController();
 
-  final _inputDebounce = ''.obs;
-
   final _verifyForm = VerifyForm(
     Get.arguments[VerifyScreen.ARGUMENT_KEY_EMAIL].toString(),
   ).obs;
 
   VerifyForm get verifyForm => _verifyForm.value;
+
+  final _isVerifyCompleted = false.obs;
+
+  bool get isVerifyCompleted => _isVerifyCompleted.isTrue;
+
+  final _inputDebounce = ''.obs;
 
   @override
   void onInit() {
@@ -44,7 +48,7 @@ class VerifyController extends GetxController {
   void onPressResendAuthCode() {
     _repository
         .resendAuthCode(verifyForm.email)
-        .then((value) => null)
+        .then((message) => SingleMessageDialog(message).show())
         .onError((error, stackTrace) {
       if (error is VerifyAuthCodeFailException) {
         SingleMessageDialog(error.message).show();
@@ -65,13 +69,15 @@ class VerifyController extends GetxController {
   void _processVerifyAuthCode() {
     try {
       verifyForm.validateInput();
+      _updateFormErrorMessage(null);
       _repository
           .verify(verifyForm.toModel())
-          .then(_updateFormErrorMessage)
+          .then(_isVerifyCompleted)
           .onError((error, stackTrace) {
         if (error is VerifyAuthCodeFailException) {
           _updateFormErrorMessage(error.message);
         }
+        throw error ?? const UnknownException();
       });
     } on AssertionError catch (e) {
       _updateFormErrorMessage(e.message.toString());

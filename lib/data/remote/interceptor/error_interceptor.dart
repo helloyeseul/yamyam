@@ -34,4 +34,6 @@ final Map<ErrorTuple, Mapper> exceptionMapper = <ErrorTuple, Mapper>{
       const VerifyAuthCodeFailException(),
   const ErrorTuple('LOGIN_FAILED.', 'AUTH_002', 401): () =>
       const LoginFailException(),
+  const ErrorTuple('Identity verification is required', 'LOGIN_SUCCESS', 200):
+      () => const VerifyRequiredException(),
 };

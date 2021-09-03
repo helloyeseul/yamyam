@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 import 'package:yamstack/app/app_binding.dart';
 import 'package:yamstack/data/exception/defined_exceptions.dart';
 import 'package:yamstack/data/remote/api/user/login/request/user_join_request.dart';
-import 'package:yamstack/data/remote/api/user/login/request/user_sign_request.dart';
+import 'package:yamstack/data/remote/api/user/login/request/user_sign_in_request.dart';
 import 'package:yamstack/data/remote/api/user/login/request/user_verify_request.dart';
 import 'package:yamstack/data/remote/api/user/login/response/user_token_response.dart';
 import 'package:yamstack/data/remote/api/user/login/user_login_api.dart';
@@ -121,13 +121,13 @@ void main() {
   group('로그인', () {
     test('로그인 성공', () {
       /* given */
-      final request = UserSignRequest(
+      final request = UserSignInRequest(
         email: 'sdc01194@gmail.com',
         password: '1234',
       );
 
       /* when */
-      final response = api.sign(request);
+      final response = api.signIn(request);
 
       /* then */
       // 타입 체크
@@ -148,14 +148,14 @@ void main() {
 
     test('로그인 실패', () async {
       /* given */
-      final request = UserSignRequest(
+      final request = UserSignInRequest(
         email: 'sdc01194@gmail.com',
         password: '12345',
       );
 
       try {
         /* when */
-        await api.sign(request);
+        await api.signIn(request);
       } on DioError catch (e) {
         /* then */
         // 타입 체크
