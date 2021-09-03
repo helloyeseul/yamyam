@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/scaffolding.dart';
 import 'package:test/test.dart';
-import 'package:yamstack/data/exception/defined_exceptions.dart';
+import 'package:yamstack/data/exception/defined_data_exceptions.dart';
 import 'package:yamstack/data/remote/api/user/login/response/user_token_response.dart';
 import 'package:yamstack/data/remote/api/user/login/user_login_api.dart';
 import 'package:yamstack/data/remote/response/base_single_response.dart';
@@ -23,10 +23,10 @@ void main() {
   final repository = UserLoginRepositoryImpl(api);
 
   group('이메일 중복 확인 테스트', () {
-    test('사용 가능', () {
-      /* given */
-      const email = 'sdc01194@gmail.com';
+    /* given */
+    const email = 'sdc01194@gmail.com';
 
+    test('사용 가능', () {
       /* when */
       when(api.emailCheck(any)).thenAnswer(
         (_) => BaseSingleResponse<EmptyResponse>.fromJson(<String, dynamic>{
@@ -44,9 +44,6 @@ void main() {
     });
 
     test('사용 불가 (중복됨)', () {
-      /* given */
-      const email = 'sdc01194@gmail.com';
-
       /* when */
       when(api.emailCheck(any)).thenAnswer(
         (_) => BaseSingleResponse<EmptyResponse>.fromJson(<String, dynamic>{
@@ -61,6 +58,45 @@ void main() {
       /* then */
       verify(api.emailCheck(email));
       expect(result, throwsA(isA<DuplicatedEmailException>()));
+    });
+  });
+
+  group('닉네임 테스트', () {
+    /* given */
+    const name = 'hello';
+
+    test('사용 가능', () {
+      /* when */
+      when(api.nameCheck(any)).thenAnswer(
+        (_) => BaseSingleResponse<EmptyResponse>.fromJson(<String, dynamic>{
+          'message': 'true',
+          'code': 'CHECK_ID',
+          'status': 200,
+        }).toFuture(),
+      );
+
+      final result = repository.checkName(name);
+
+      /* then */
+      verify(api.nameCheck(name));
+      expect(result, completion(equals('사용하실 수 있는 닉네임입니다.')));
+    });
+
+    test('사용 불가 (중복됨)', () {
+      /* when */
+      when(api.nameCheck(any)).thenAnswer(
+        (_) => BaseSingleResponse<EmptyResponse>.fromJson(<String, dynamic>{
+          'message': 'false',
+          'code': 'CHECK_ID',
+          'status': 200
+        }).toFuture(),
+      );
+
+      final result = repository.checkName(name);
+
+      /* then */
+      verify(api.nameCheck(name));
+      expect(result, throwsA(isA<DuplicatedNameException>()));
     });
   });
 

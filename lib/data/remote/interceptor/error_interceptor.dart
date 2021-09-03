@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:tuple/tuple.dart';
-import 'package:yamstack/data/exception/defined_exceptions.dart';
+import 'package:yamstack/data/exception/defined_data_exceptions.dart';
 
 class ErrorInterceptor extends Interceptor {
   @override
@@ -20,9 +20,9 @@ class ErrorInterceptor extends Interceptor {
 }
 
 typedef ErrorTuple = Tuple3<String?, String?, int?>;
-typedef Mapper = DefinedException Function();
+typedef Mapper = DefinedDataException Function();
 
-DefinedException? mapException(String? message, String? code, int? status) {
+DefinedDataException? mapException(String? message, String? code, int? status) {
   final mapper = exceptionMapper[ErrorTuple(message, code, status)];
   return mapper == null ? null : mapper();
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yamstack/data/exception/defined_exceptions.dart';
+import 'package:yamstack/data/exception/defined_data_exceptions.dart';
 import 'package:yamstack/data/repository/user/login/user_login_repository.dart';
 import 'package:yamstack/view/screens/join/components/join_name_check_dialog.dart';
 import 'package:yamstack/view/screens/main/main_screen.dart';
@@ -26,36 +26,28 @@ class SignInController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    ever(_signInForm, (_) {
-      _isFormCompleted.value = signInForm.isFormCompleted;
-    });
+    ever(_signInForm, (_) => _isFormCompleted(signInForm.isFormCompleted));
   }
 
   void onEmailChanged(String email) {
-    _signInForm.update((form) {
-      form!.email = email;
-    });
+    _signInForm.update((form) => form!.email = email);
   }
 
   void onPasswordChanged(String password) {
-    _signInForm.update((form) {
-      form!.password = password;
-    });
+    _signInForm.update((form) => form!.password = password);
   }
 
-  void onSignInButtonClicked() {
-    repository
-        .signIn(signInForm.toModel())
-        .then((value) => Get.offAllNamed(MainScreen.route))
-        .onError((error, stackTrace) {
-      if (error is VerifyRequiredException) {
-        Get.toNamed(
-          VerifyScreen.route,
-          arguments: {VerifyScreen.ARGUMENT_KEY_EMAIL: signInForm.email},
-        );
-      } else if (error is LoginFailException) {
-        SingleMessageDialog(error.message).show();
-      }
-    });
+  Future<void> onSignInButtonClicked() async {
+    try {
+      await repository.signIn(signInForm.toModel());
+      await Get.offAllNamed(MainScreen.route);
+    } on VerifyRequiredException catch (_) {
+      await Get.toNamed(
+        VerifyScreen.route,
+        arguments: {VerifyScreen.ARGUMENT_KEY_EMAIL: signInForm.email},
+      );
+    } on DefinedDataException catch (e) {
+      SingleMessageDialog(e.message).show();
+    }
   }
 }
