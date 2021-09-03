@@ -4,7 +4,7 @@ import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/scaffolding.dart';
 import 'package:test/test.dart';
-import 'package:yamstack/data/exception/defined_exceptions.dart';
+import 'package:yamstack/data/exception/defined_data_exceptions.dart';
 import 'package:yamstack/data/remote/api/user/login/response/user_token_response.dart';
 import 'package:yamstack/data/remote/api/user/login/user_login_api.dart';
 import 'package:yamstack/data/remote/response/base_single_response.dart';

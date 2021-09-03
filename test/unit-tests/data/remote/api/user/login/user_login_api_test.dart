@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:test/test.dart';
 import 'package:yamstack/app/app_binding.dart';
-import 'package:yamstack/data/exception/defined_exceptions.dart';
+import 'package:yamstack/data/exception/defined_data_exceptions.dart';
 import 'package:yamstack/data/remote/api/user/login/request/user_join_request.dart';
 import 'package:yamstack/data/remote/api/user/login/request/user_sign_in_request.dart';
 import 'package:yamstack/data/remote/api/user/login/request/user_verify_request.dart';

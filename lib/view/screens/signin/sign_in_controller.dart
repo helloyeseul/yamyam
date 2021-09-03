@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:yamstack/data/exception/defined_exceptions.dart';
+import 'package:yamstack/data/exception/defined_data_exceptions.dart';
 import 'package:yamstack/data/repository/user/login/user_login_repository.dart';
 import 'package:yamstack/view/screens/join/components/join_name_check_dialog.dart';
 import 'package:yamstack/view/screens/main/main_screen.dart';

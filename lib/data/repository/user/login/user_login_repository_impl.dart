@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:yamstack/data/exception/defined_exceptions.dart';
+import 'package:yamstack/data/exception/defined_data_exceptions.dart';
 import 'package:yamstack/data/remote/api/user/login/response/user_token_response.dart';
 import 'package:yamstack/data/remote/api/user/login/user_login_api.dart';
 import 'package:yamstack/data/remote/interceptor/error_interceptor.dart';
@@ -34,7 +34,7 @@ class UserLoginRepositoryImpl implements UserLoginRepository {
     try {
       await api.join(model.toRequest());
     } on DioError catch (e) {
-      throw e.error as DefinedException;
+      throw e.error as DefinedDataException;
     }
   }
 
@@ -45,7 +45,7 @@ class UserLoginRepositoryImpl implements UserLoginRepository {
       await saveTokens(response.data);
       return true;
     } on DioError catch (e) {
-      throw e.error as DefinedException;
+      throw e.error as DefinedDataException;
     }
   }
 
@@ -55,13 +55,13 @@ class UserLoginRepositoryImpl implements UserLoginRepository {
       await api.resendAuthCode(email);
       return '등록된 이메일로 인증번호가 재전송되었습니다.';
     } on DioError catch (e) {
-      throw e.error as DefinedException;
+      throw e.error as DefinedDataException;
     }
   }
 
   @override
   Future<void> signIn(UserSignInModel model) async {
-    DefinedException? error;
+    DefinedDataException? error;
 
     try {
       final response = await api.signIn(model.toRequest());
@@ -71,7 +71,7 @@ class UserLoginRepositoryImpl implements UserLoginRepository {
         response.status,
       );
     } on DioError catch (e) {
-      throw e.error as DefinedException;
+      throw e.error as DefinedDataException;
     }
 
     if (error != null) throw error;
